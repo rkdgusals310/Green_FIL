@@ -32,7 +32,7 @@
   	</select>
   
   <select id="queDetail" resultType="BoardVoDto" parameterType="BoardVoDto"> 	<!-- 문의사항 디테일 -->
-  		select board_title,board_content,user_name,macro_content,board_no,b.macro_no,b.user_no
+  		select board_title,board_content,user_name,macro_content,board_no,b.macro_no,b.user_no,board_open,b.status_no
 		from board b
 		join user u on u.user_no=b.user_no
 		join macro m on b.macro_no=m.macro_no
