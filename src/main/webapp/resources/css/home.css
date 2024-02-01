@@ -19,7 +19,7 @@
 .home_notice{
     background-color: #FFE4E4;
     width:  1140px;
-    height: 137px;
+    height: 100px;
 }
 /*홈_공지사항*/
 #notice{
@@ -29,7 +29,7 @@
 }
 #notice_title{
     font-size: 37px;
-    line-height: 137px;
+    line-height: 95px;
 }
 
 /*홈_문의사항*/
@@ -50,12 +50,36 @@
     margin-bottom: 10px;
 }
 /*홈_ 글쓰기 버튼*/
+#btn_w_m{
+    width: 140px;
+    height: 40px;
+    background-color: #777474;
+    text-align: center;
+    board-left: none;
+    margin-left: 135px;
+}
+
+p#btn_w_m{
+	border-left:none;
+	padding-left: 0px;
+}
+#btn_w_m a{
+    font-size: 20px;
+    color: black;
+   
+    line-height: 40px;
+    font-weight: bold;
+}
+
+
+
 #btn_w{
     width: 140px;
     height: 40px;
     background-color: #777474;
     text-align: center;
     board-left: none;
+   
 }
 p#btn_w{
 	border-left:none;
@@ -67,4 +91,9 @@ p#btn_w{
    
     line-height: 40px;
     font-weight: bold;
+}
+
+#paging_user{
+	
+	margin-left: 320px;
 }

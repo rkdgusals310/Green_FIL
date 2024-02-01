@@ -47,7 +47,7 @@
 			</div>
 
 			<ul class="navbar_menu" style="margin-bottom: -5px">
-				<li class="highlight"><a href="#">오늘의 콘텐츠</a></li>
+				<li class="highlight"><a href="#">오늘의 일기</a></li>
 				<li class="active">|</li>
 				<li class="highlight"><a href="home.hm">고객 문의</a></li>
 				<!-- <li class="active">|</li>
