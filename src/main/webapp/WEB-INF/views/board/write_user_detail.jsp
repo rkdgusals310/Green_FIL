@@ -37,7 +37,7 @@
 
     
     <c:choose >
-    	<c:when test="${login.grade_no eq 3 and login.user_no eq queDetail.user_no}">
+    	<c:when test="${login.grade_no eq 3 and login.user_no eq queDetail.user_no and queDetail.status_no==2}">
     	  <div class="text-right"    >
        <a href="${pageContext.request.contextPath}/edit_user.hm?board_no=${queDetail.board_no}"  class="btn btn-danger" >수정</a> 
        <a href="${pageContext.request.contextPath}/delete_u.hm?board_no=${queDetail.board_no}"  class="btn btn-danger" >삭제</a>    
