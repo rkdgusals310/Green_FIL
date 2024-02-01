@@ -35,6 +35,14 @@
 
 <title>feel in like</title>
 
+<style>
+#start_img{
+    position: absolute;
+    top: 170px;
+    left: 700px;
+    }
+</style>
+
 </head>
 <body>
 	<header>
@@ -43,7 +51,7 @@
 			<h2 class="myhidden">주메뉴</h2>
 			<div class="navbar_logo">
 				<a href="home.js"><img class="logo"
-					src="${pageContext.request.contextPath}/resources/image/feel_1.png" /></a>
+					src="${pageContext.request.contextPath}/resources/image/newLogo_2.png" /></a>
 			</div>
 
 			<ul class="navbar_menu" style="margin-bottom: -5px">

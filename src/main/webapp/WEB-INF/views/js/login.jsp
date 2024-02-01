@@ -52,22 +52,6 @@
 			});
 		});
 		
-	/* 	function match(){
-			$.ajax({
-				url:"login_match.js",
-				type:"POST",
-				dataType:"json",
-				contentType: "application/json;charset=UTF-8",
-				headers: {"Accept": "application/json"},
-				data:{"user_email":$("#userid").val(), "user_pass":$("#userpw").val()},
-				error:function(xhr, status, msg){
-					alert(status+"/"+msg);},
-				success:function(json){
-					alert(json.result);
-					$("#logincheck").html(json.result);
-				}
-			});
-		} */
 	</script>
 	<main id="main">
 		<div
@@ -132,19 +116,7 @@
 							style="width: 180px; height: 40px;"></a>
 					</p>
 				</div>
-				<div>
-					<p>
-						<a href="#" title="naver login"><img
-							src="resources/image/appleLogin.png"
-							style="width: 180px; height: 40px;"></a>
-					</p>
-					<p>
-						<a href="#" title="google login"><img
-							src="resources/image/googleLogin.png"
-							style="width: 180px; height: 40px;"></a>
-					</p>
-				</div>
-
+		
 			</div>
 
 
