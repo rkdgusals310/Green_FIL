@@ -11,6 +11,9 @@
 
 <main class="wave">
     <div id="main">
+    	<div id="start_img">
+    	<img src="${pageContext.request.contextPath}/resources/image/newLogo.png" >
+    	</div>
     </div>
 
 	<div class="noite"></div>
