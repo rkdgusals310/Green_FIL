@@ -43,6 +43,14 @@
 				<div id="home_question_back">
 					<!-- 홈 - 문의사항 -->
 					<table class="table">
+					<colgroup> 
+				    	<col style="width: 10%;"/> 
+				        <col style="width: 10%;"/> 
+				        <col style="width: 50%;"/> 
+				        <col style="width: 10%;"/> 
+				        <col style="width: 10%;"/> 
+				        <col style="width: 10%;"/> 
+				    </colgroup> 
 						<thead>
 							<tr id="home_question">
 								<th>번호</th>
@@ -70,9 +78,11 @@
 								</tr>
 							</c:forEach>
 						</tbody>
+					</table>
+					<table id="paging_user">
 						<tfoot>
 							<tr>
-								<td colspan="40" class="text-center">
+								<td  class="text-center">
 
 									<ul class="pagination">
 										<c:if test="${paging.start>=paging.bottomlimit}">
@@ -97,19 +107,25 @@
 
 									</ul>
 								</td>
+								
+								<td>
+									<c:if test="${login.grade_no eq 3}">
+										<div>
+											<!-- 문의사항 작성 -->
+											<p id="btn_w_m">
+												<a href="${pageContext.request.contextPath}/write_user.hm">글작성하기</a>
+											</p>
+											<!--  시간 남으면 hover시 색 변화 살짝 -->
+										</div>
+									</c:if>
+								
+								</td>
+								
 							</tr>
 
 						</tfoot>
 					</table>
-					<c:if test="${login.grade_no eq 3}">
-						<div>
-							<!-- 문의사항 작성 -->
-							<p id="btn_w">
-								<a href="${pageContext.request.contextPath}/write_user.hm">글작성하기</a>
-							</p>
-							<!--  시간 남으면 hover시 색 변화 살짝 -->
-						</div>
-					</c:if>
+					
 				</div>
 				<!-- 홈 - 문의사항 -->
 
