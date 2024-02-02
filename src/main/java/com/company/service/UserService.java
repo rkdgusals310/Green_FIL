@@ -13,6 +13,7 @@ public interface UserService {
 	public UserDto loginUser(UserDto dto);
 	public List<UserVoDto> contentList(UserVoDto vodto);
 	public int insert_user(UserDto dto);
+	public int insert_kakao(UserDto dto);
 	public int update_user(UserDto dto);
 	public int delete_user(UserDto dto);
 	public UserDto find_id(UserDto dto);

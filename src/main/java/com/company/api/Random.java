@@ -1,5 +1,8 @@
 package com.company.api;
 
+import org.springframework.stereotype.Component;
+
+@Component
 public class Random {
 	public String random_code() {
 		String code="";

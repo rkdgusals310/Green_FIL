@@ -52,21 +52,6 @@ public class UserController {
 
 	}
 
-	/*
-	  @PostMapping(value = "/login_match.js", produces =
-	  "application/json;charset=UTF-8")
-	  
-	  @ResponseBody public Map<String, String> login_match(UserDto dto){
-	  System.out.println("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@"+dto.
-	  getUser_email());
-	  System.out.println("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@"+dto.
-	  getUser_pass()); Map<String, String> result=new HashMap<>();
-	  
-	  if(service.loginUser(dto) == null) { result.put("result", "abcdefg");
-	 System.out.println(result); };
-	  
-	  return result; }
-	 */
 	@GetMapping("/logout.js")
 	public String logout(HttpSession session) {
 		session.invalidate();

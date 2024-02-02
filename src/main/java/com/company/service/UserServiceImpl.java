@@ -40,7 +40,16 @@ public class UserServiceImpl implements UserService {
 		}
 		return dao.insert(dto);
 	}
-
+	@Override
+	public int insert_kakao(UserDto dto) {
+		try {
+			dto.setUser_ip(InetAddress.getLocalHost().getHostAddress());
+			dto.setUser_mobile(null);
+		} catch (UnknownHostException e) {
+			e.printStackTrace();
+		}
+		return dao.insert(dto);
+	}
 	@Override
 	public int update_user(UserDto dto) {
 		return dao.update(dto);
@@ -86,6 +95,8 @@ public class UserServiceImpl implements UserService {
 	public int delete_myconetent(UserDto dto) {
 		return dao.delete_myconetent(dto);
 	}
+
+	
 
 	
 }

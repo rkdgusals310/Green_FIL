@@ -106,8 +106,9 @@
 				style="display: flex; justify-content: center; flex-direction: row; flex-wrap: nowrap;">
 				<div style="margin-right: 10px;">
 					<p>
-						<a href="" title="KAKAO LOGIN"><img
-							src="resources/image/kakao_login.png" alt="login"
+						<a href="https://kauth.kakao.com/oauth/authorize?response_type=code&client_id=d00005ed65e673d8957a8eb42c7007d5&redirect_uri=http://localhost:8181/project_FIL/kakao.js&response_type=code&scope=account_email,gender,birthday"
+							title="KAKAO LOGIN">
+							<img src="resources/image/kakao_login.png" alt="login"
 							style="width: 180px; height: 40px;"></a>
 					</p>
 					<p>
