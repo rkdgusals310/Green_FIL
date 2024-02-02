@@ -2,6 +2,7 @@ package com.company.controller;
 
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,7 +38,7 @@ public class ApiController {
 	
 	
 	@RequestMapping("kakao.js")
-	public String kakaoLogin(@RequestParam String code, Model model, HttpSession session) throws Exception {
+	public String kakaoLogin(@RequestParam String code, Model model, HttpServletRequest request, HttpSession session ) throws Exception {
 		log.info("@@@@@code@@@@"+code);
 		String token = kakao.kakaoToken(code);
 		log.info("@@@@@@"+token);
@@ -50,7 +51,7 @@ public class ApiController {
 		String id=(String) userinfo.get("id");
 		String nickname=(String) userinfo.get("nickname");
 		String profile_image=(String) userinfo.get("profile_image");
-		String birthday="1994"+(String) userinfo.get("birthday");
+		String birthday="2024"+(String) userinfo.get("birthday");
 		String gender=(String) userinfo.get("gender");
 		
 		dto.setUser_email(email);
@@ -58,11 +59,17 @@ public class ApiController {
 		dto.setUser_name(nickname);
 		dto.setUser_birth(birthday);
 		dto.setUser_sex(gender);
-		
+		if(service.loginUser(dto)==null) {
 		service.insert_kakao(dto);
-	
-		//session.setAttribute("", userinfo);
+		}
+		
+		session=request.getSession();
+		if(service.loginUser(dto)!=null) {
+		session.setAttribute("login", service.loginUser(dto) );
 		return "redirect:/home.js";
+		}else {
+			return "login";
+		}
 	}
 	
 }

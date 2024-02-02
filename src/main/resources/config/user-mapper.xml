@@ -10,6 +10,7 @@
 		select * from user where
 		user_email=#{user_email} and user_pass=#{user_pass}
 	</select>
+
 	<select id="select" parameterType="UserDto" resultType="UserDto">
 		select *
 		from user where user_no=#{user_no}
