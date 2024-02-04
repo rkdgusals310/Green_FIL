@@ -116,23 +116,23 @@
 						<strong>성별</strong> <strong class="required">*</strong>
 					</h3>
 				</div>	
-				<c:if test="${param.user_sex eq 'male' }">
-					<label for="male">남자</label>
-					<input type="radio" id="male" name="user_sex" value="male" checked>
-					<label for="female">여자</label>
-					<input type="radio" id="female" name="user_sex" value="female">
+				<c:if test="${param.user_sex eq 'M' }">
+					<label for="M">남자</label>
+					<input type="radio" id="M" name="user_sex" value="M" checked>
+					<label for="F">여자</label>
+					<input type="radio" id="F" name="user_sex" value="F">
 				</c:if>
-				<c:if test="${param.user_sex eq 'female' }">
-					<label for="male">남자</label>
-					<input type="radio" id="male" name="user_sex" value="male">
-					<label for="female">여자</label>
-					<input type="radio" id="female" name="user_sex" value="female" checked>
+				<c:if test="${param.user_sex eq 'F' }">
+					<label for="M">남자</label>
+					<input type="radio" id="M" name="user_sex" value="M">
+					<label for="F">여자</label>
+					<input type="radio" id="F" name="user_sex" value="F" checked>
 				</c:if>
 				<c:if test="${param.user_sex eq none }">
-					<label for="male">남자</label>
-					<input type="radio" id="male" name="user_sex" value="male">
-					<label for="female">여자</label>
-					<input type="radio" id="female" name="user_sex" value="female">
+					<label for="M">남자</label>
+					<input type="radio" id="M" name="user_sex" value="M">
+					<label for="F">여자</label>
+					<input type="radio" id="F" name="user_sex" value="F">
 				</c:if>
 			</div>
 

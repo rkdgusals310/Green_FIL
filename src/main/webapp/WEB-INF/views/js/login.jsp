@@ -112,7 +112,7 @@
 							style="width: 180px; height: 40px;"></a>
 					</p>
 					<p>
-						<a href="#" title="naver login"><img
+						<a href="https://nid.naver.com/oauth2.0/authorize?response_type=code&client_id=rNzGeKDyv6_oml2GeQla&state=STATE_STRING&redirect_uri=http://localhost:8181/project_FIL/naver.js" title="naver login"><img
 							src="resources/image/naverLogin.png"
 							style="width: 180px; height: 40px;"></a>
 					</p>

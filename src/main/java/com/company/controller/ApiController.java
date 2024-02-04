@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.company.api.Api_Mail;
 import com.company.api.Kakao_login;
+import com.company.api.Naver_login;
 import com.company.api.Random;
 import com.company.dto.UserDto;
 import com.company.service.UserService;
@@ -26,6 +27,7 @@ import lombok.extern.log4j.Log4j;
 public class ApiController {
 	@Autowired Api_Mail mail;
 	@Autowired Kakao_login kakao;
+	@Autowired Naver_login naver;
 	@Autowired UserService service;
 	@PostMapping("mail.js")
 	@ResponseBody
@@ -45,7 +47,7 @@ public class ApiController {
 		Map<String, Object> userinfo=kakao.getUserInfo(token);
 		//model.addAttribute("code", code);
 		//model.addAttribute("userinfo", userinfo);
-		System.out.println("userinfo@@@@@@@@@@@@@@"+userinfo);
+		log.info("userinfo@@@@@@@@@@@@@@"+userinfo);
 		UserDto dto=new UserDto();
 		String email=(String) userinfo.get("email");
 		String id=(String) userinfo.get("id");
@@ -59,17 +61,60 @@ public class ApiController {
 		dto.setUser_name(nickname);
 		dto.setUser_birth(birthday);
 		dto.setUser_sex(gender);
+		session=request.getSession();
 		if(service.loginUser(dto)==null) {
 		service.insert_kakao(dto);
 		}
-		
-		session=request.getSession();
 		if(service.loginUser(dto)!=null) {
 		session.setAttribute("login", service.loginUser(dto) );
 		return "redirect:/home.js";
 		}else {
 			return "login";
 		}
+	}
+	
+	@RequestMapping("naver.js")
+	public String naverLogin(@RequestParam String code,Model model, HttpServletRequest request, HttpSession session) throws Exception {
+		log.info("code@@@@:"+code);
+		String token=naver.naverLogin(code);
+		log.info("token@@@:"+token);
+		Map<String, Object> userinfo=naver.getUserInfo(token);
+		log.info("userinfo@@@@@: "+userinfo);
+		UserDto dto= new UserDto();
+		String birthday=(String) userinfo.get("birthday");
+		String profile_image=(String) userinfo.get("profile_image");
+		String gender=(String) userinfo.get("gender");
+		String birthyear=(String) userinfo.get("birthyear");
+		String name=(String) userinfo.get("name");
+		String mobile=(String) userinfo.get("mobile");
+		mobile=mobile.replaceAll("[^0-9]", "");
+		String id=(String) userinfo.get("id");
+		String email=(String) userinfo.get("email");
+		String birth=birthyear+"-"+birthday;
+
+		dto.setUser_birth(birth);
+		dto.setUser_email(email);
+		dto.setUser_mobile(mobile);
+		dto.setUser_name(name);
+		dto.setUser_sex(gender);
+		dto.setUser_pass(id);
+		//alter table user modify user_pass varchar(100) not null;
+		//delete from user where user_no order by user_no desc limit 1;
+		//delete from user where user_no=(select user_no from user order by user_no desc limit 1)l
+		//alter table user modify user_login varchar(10) default 'basic'; 
+		//insert구문에 user_login 값 있으면 추가 아니면 없이 
+		session=request.getSession();
+		if(service.loginUser(dto)==null) {
+			service.insert_naver(dto);
+			}
+		
+		if(service.loginUser(dto)!=null) {
+		session.setAttribute("login", service.loginUser(dto) );
+		return "redirect:/home.js";
+		}else {
+			return "login";
+		}
+
 	}
 	
 }
