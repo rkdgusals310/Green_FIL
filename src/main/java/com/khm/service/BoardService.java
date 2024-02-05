@@ -59,6 +59,7 @@ public interface BoardService {
 	
 	public List<MacroDto> macroList();// 매크로 답변 리스트
 	public MacroDto macroDetail(MacroDto mdto);// 매크로 답변 디테일
+	public BoardVoDto macroSuccess(BoardVoDto vodto);// 매크로 답변 디테일
 	public int macroWrite(MacroDto mdto);// 매크로 답변 리스트 추가
 	public int macroUpdate(MacroDto mdto);// 매크로 답변 리스트 수정
 	public int macroDelete(MacroDto mdto);// 매크로 답변 리스트 삭제

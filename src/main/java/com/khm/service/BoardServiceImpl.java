@@ -171,5 +171,10 @@ public class BoardServiceImpl implements BoardService {
 		
 		return dao.macroAnswer();
 	}
+
+	@Override
+	public BoardVoDto macroSuccess(BoardVoDto vodto) {
+		return dao.macroSuccess(vodto);
+	}
 		
 }

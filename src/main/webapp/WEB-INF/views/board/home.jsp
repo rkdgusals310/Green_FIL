@@ -284,7 +284,7 @@
 														<td>${list.board_no}</td>
 														<td>${list.user_name}</td>
 														<td><a
-															href="${pageContext.request.contextPath}/write_root_detail.hm?board_no=${list.board_no}">${list.board_title}</a>
+															href="${pageContext.request.contextPath}/write_root_detail.hm?board_no=${list.board_no}&macro_no=${list.macro_no}">${list.board_title}</a>
 														</td>
 														<!-- 제목 클릭시 디테일 -->
 														<td><c:if test="${list.board_open eq false}">비공개</c:if>
@@ -298,6 +298,9 @@
 															</c:choose></td>
 														<!-- c:if로 사용자로 로그인하고 답변대기라면 수정 삭제 버튼 나오게-->
 														<td>${list.board_date}</td>
+														<td> 
+														<a href="${pageContext.request.contextPath}/delete_r.hm?board_no=${list.board_no}" class="btn btn-danger">삭제</a>
+														</td>
 													</tr>
 												</c:forEach>
 											</tbody>

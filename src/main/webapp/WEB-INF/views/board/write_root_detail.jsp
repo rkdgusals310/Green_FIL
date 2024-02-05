@@ -31,26 +31,41 @@
     <div class="panel"  >
       <div  class="panel-body">
       
-        <form action="${pageContext.request.contextPath}/upedate_answer.hm?board_no=${queDetail.board_no}" method="POST">
-        	<fieldset>
-        		<div>
-        			<label for="macro_no">답변</label>
-        			<select id="macro_no" name="macro_no">
-        				<c:forEach var="i" items="${answer}">
-	        				<option value="${i.macro_no}">${i.macro_content}</option>        				
-        				</c:forEach>
-        			</select>
-        		</div>
-        		<div>
-			      	<input type="submit" value="확인">
-			      </div> 
-        	</fieldset>
-        </form>
+     
+        		<c:if test="${queDetail.status_no eq 2}">
+        		   <form action="${pageContext.request.contextPath}/upedate_answer.hm?board_no=${queDetail.board_no}" method="POST" id="email">
+        			<fieldset>
+	        		<div>
+	        			<label for="macro_no">답변</label>
+	        			<select id="macro_no" name="macro_no">
+	        				<c:forEach var="i" items="${answer}">
+		        				<option value="${i.macro_no}">${i.macro_content}</option>        				
+	        				</c:forEach>
+	        			</select>
+
+	        		</div>
+			        		
+	        		<div>
+				      	<input type="submit" value="확인">
+				      	 <p class="btn btn-danger"><a href="javascript:window.history.back();">뒤로가기</a></p>
+		        </fieldset>
+		        </form>
+        		</c:if>
+        		<c:if test="${queDetail.status_no eq 1}">
+				        <div>
+					        <span class="glyphicon glyphicon-plus">답변</span> 
+					        <p>${success.macro_content}</p>
+				         </div>
+				         <div>
+					        <p class="btn btn-danger"><a href="javascript:window.history.back();">뒤로가기</a></p>
+					    </div> 
+        		</c:if>
+        		
+			     
+    </div>
+        		
       </div> 
-      
-      
-      
-      
+
     </div>	
    				 
   </div>	

@@ -57,7 +57,7 @@
 			<ul class="navbar_menu" style="margin-bottom: -5px">
 				<li class="highlight"><a href="#">오늘의 일기</a></li>
 				<li class="active">|</li>
-				<li class="highlight"><a href="home.hm">고객 문의</a></li>
+				<li class="highlight"><a href="home.hm?user_no=${login.user_no}">고객 문의</a></li>
 				<!-- <li class="active">|</li>
 				<li class="highlight"><a href="more_info.feel">FIL 알아보기</a></li> -->
 			</ul>
@@ -88,7 +88,7 @@
 							<p> <img src="${pageContext.request.contextPath}/resources/image/mypage.png" alt="mypage"> </p>
 						</button>
 						<ul class="dropdown-menu" style="left: -110px; color: black">
-							<li><a href="mypage.js?user_no=${login.user_no }">내 정보</a></li>
+							<li><a href="mypage.js?user_no=${login.user_no}">내 정보</a></li>
 							<li><a href="#">내 저장 콘텐츠</a></li>
 							<li><a href="#">콘텐츠관리</a></li>
 							<li><a href="adminpage_list.js">회원관리</a></li>

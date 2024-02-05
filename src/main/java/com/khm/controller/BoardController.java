@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.khm.api.EMail;
 import com.khm.dto.BoardDto;
 import com.khm.dto.BoardVoDto;
 
@@ -30,6 +31,7 @@ import com.khm.service.BoardService;
 @Controller
 public class BoardController {
 	@Autowired BoardService service;
+	@Autowired EMail mail;
 	
 	
 	@RequestMapping(value="/home.hm", method = RequestMethod.GET)
@@ -209,6 +211,8 @@ public class BoardController {
 	public String macro(BoardVoDto dto,Model model) {
 		model.addAttribute("queDetail",service.queDetail(dto));
 		model.addAttribute("answer",service.macroAnswer());
+		model.addAttribute("success",service.macroSuccess(dto));
+		
 		return "write_root_detail";
 	}
 	
@@ -222,6 +226,7 @@ public class BoardController {
 	
 		if(service.reply(ddto)>0) {
 			out.print("<script>alert('매크로 성공'); location.href='home.hm';</script>");
+			mail.naverMailSend();
 		}
 		else {
 			out.print("<script>alert('매크로 실패');history.go(-1);</script>");
@@ -263,6 +268,21 @@ public class BoardController {
 		model.addAttribute("macroDetail",service.macroDetail(dto));
 		
 		return "edit_macro";
+	}
+	
+	@RequestMapping(value="/delete_r.hm", method = RequestMethod.GET)
+	public void delete_r(Model model,BoardDto dto,HttpServletRequest request,HttpServletResponse response) throws IOException {
+		request.setCharacterEncoding("UTF-8");
+		response.setContentType("text/html; charset=UTF-8");
+		
+		PrintWriter out=response.getWriter();
+
+		if(service.queDelete_r(dto)>0) {
+			out.print("<script>alert('게시글 삭제 성공'); location.href='home.hm';</script>");
+		}
+		else {
+			out.print("<script>alert('게시글 실패');history.go(-1);</script>");
+		}
 	}
 	
 	@RequestMapping(value="/edit_macro.hm", method = RequestMethod.POST)
