@@ -74,7 +74,7 @@ public class EMail {
 //			imagePart.attachFile(new File("newLogo.png"));
 //			imagePart.setContentID("<newLogo>");
 //
-//			// 메시지에 이미지 첨부
+//			// 메시지에 이미지 첨부		
 //			Multipart multipart = new MimeMultipart();
 //			multipart.addBodyPart(imagePart);
 //			message.setContent(multipart);
