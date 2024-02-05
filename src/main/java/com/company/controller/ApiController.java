@@ -1,5 +1,7 @@
 package com.company.controller;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
@@ -49,23 +51,44 @@ public class ApiController {
 		//model.addAttribute("code", code);
 		//model.addAttribute("userinfo", userinfo);
 		log.info("userinfo@@@@@@@@@@@@@@"+userinfo);
+		
 		UserDto dto=new UserDto();
+		String profile_image=(String) userinfo.get("profile_image");
 		String email=(String) userinfo.get("email");
 		String id=(String) userinfo.get("id");
-		String nickname=(String) userinfo.get("nickname");
-		String profile_image=(String) userinfo.get("profile_image");
-		String birthday="2024"+(String) userinfo.get("birthday");
-		String gender=(String) userinfo.get("gender");
+		dto.setUser_email(email);
+		UserDto list=service.loginInfo(dto);
+		
+		
+		String birth=list.getUser_birth();
+		String mobile=list.getUser_mobile();
+		String user_pass=list.getUser_pass();
+		String user_sex=list.getUser_sex();
+		String user_name=list.getUser_name();
+		
+		dto.setUser_birth(birth);
+		dto.setUser_mobile(mobile);
+		dto.setUser_pass(user_pass);
+		dto.setUser_sex(user_sex);
+		dto.setUser_name(user_name);
+		dto.setUser_login(id);
+		service.insert_api(dto);
+		session=request.getSession();
+		/*
+		 * String nickname=(String) userinfo.get("nickname");  String
+		 * birthday="2024"+(String) userinfo.get("birthday"); String gender=(String)
+		 * userinfo.get("gender");
+	
 		
 		dto.setUser_email(email);
 		dto.setUser_pass(id);
 		dto.setUser_name(nickname);
 		dto.setUser_birth(birthday);
 		dto.setUser_sex(gender);
-		session=request.getSession();
+			
 		if(service.loginUser(dto)==null) {
-		service.insert_kakao(dto);
-		}
+		service.insert_api(dto);
+		} */
 		if(service.loginUser(dto)!=null) {
 		session.setAttribute("login", service.loginUser(dto) );
 		return "redirect:/home.js";
@@ -82,33 +105,44 @@ public class ApiController {
 		Map<String, Object> userinfo=naver.getUserInfo(token);
 		log.info("userinfo@@@@@: "+userinfo);
 		UserDto dto= new UserDto();
-		String birthday=(String) userinfo.get("birthday");
 		String profile_image=(String) userinfo.get("profile_image");
-		String gender=(String) userinfo.get("gender");
-		String birthyear=(String) userinfo.get("birthyear");
-		String name=(String) userinfo.get("name");
-		String mobile=(String) userinfo.get("mobile");
-		mobile=mobile.replaceAll("[^0-9]", "");
 		String id=(String) userinfo.get("id");
 		String email=(String) userinfo.get("email");
-		String birth=birthyear+"-"+birthday;
 
-		dto.setUser_birth(birth);
 		dto.setUser_email(email);
+		UserDto list=service.loginInfo(dto);
+	
+		String birth=list.getUser_birth();
+		String mobile=list.getUser_mobile();
+		String user_pass=list.getUser_pass();
+		String user_sex=list.getUser_sex();
+		String user_name=list.getUser_name();
+		
+		dto.setUser_birth(birth);
+		dto.setUser_mobile(mobile);
+		dto.setUser_pass(user_pass);
+		dto.setUser_sex(user_sex);
+		dto.setUser_name(user_name);
+		dto.setUser_login(id);
+		service.insert_api(dto);
+		session=request.getSession();
+		/*
+		dto.setUser_pass(id);
 		dto.setUser_mobile(mobile);
 		dto.setUser_name(name);
 		dto.setUser_sex(gender);
-		dto.setUser_pass(id);
+		dto.setUser_birth(birth);
+		 * String birthday=(String) userinfo.get("birthday"); String gender=(String)
+		 * userinfo.get("gender"); String birthyear=(String) userinfo.get("birthyear");
+		 * String name=(String) userinfo.get("name"); String mobile=(String)
+		 * userinfo.get("mobile"); mobile=mobile.replaceAll("[^0-9]", ""); String
+		 * birth=birthyear+"-"+birthday;
+		 */
 		//alter table user modify user_pass varchar(100) not null;
 		//delete from user where user_no order by user_no desc limit 1;
 		//delete from user where user_no=(select user_no from user order by user_no desc limit 1)l
 		//alter table user modify user_login varchar(10) default 'basic'; 
 	
-		session=request.getSession();
-		if(service.loginUser(dto)==null) {
-			service.insert_naver(dto);
-			}
-		
 		if(service.loginUser(dto)!=null) {
 		session.setAttribute("login", service.loginUser(dto) );
 		return "redirect:/home.js";

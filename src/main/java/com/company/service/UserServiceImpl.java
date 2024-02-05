@@ -31,6 +31,13 @@ public class UserServiceImpl implements UserService {
 	public UserDto loginUser(UserDto dto) {
 		return dao.loginUser(dto);
 	}
+	
+
+	@Override
+	public UserDto loginInfo(UserDto dto) {
+		return dao.loginInfo(dto);
+	}
+
 
 	@Override
 	public int insert_user(UserDto dto) {
@@ -42,27 +49,15 @@ public class UserServiceImpl implements UserService {
 		return dao.insert(dto);
 	}
 
-	@Override
-	public int insert_naver(UserDto dto) {
-		try {
-			dto.setUser_ip(InetAddress.getLocalHost().getHostAddress());
-		} catch (UnknownHostException e) {
-			e.printStackTrace();
-		}
-		
-		return  dao.insert(dto);
-	}
 	
 	@Override
-	public int insert_kakao(UserDto dto) {
-		Random random = new Random();
+	public int insert_api(UserDto dto) {
 		try {
 			dto.setUser_ip(InetAddress.getLocalHost().getHostAddress());
-			dto.setUser_mobile(random.random_mobile());
 		} catch (UnknownHostException e) {
 			e.printStackTrace();
 		}
-		return dao.insert(dto);
+		return dao.insert_api(dto);
 	}
 	
 	
