@@ -38,6 +38,7 @@ public class ApiController {
 		return randomCode;
 	}
 	
+
 	
 	@RequestMapping("kakao.js")
 	public String kakaoLogin(@RequestParam String code, Model model, HttpServletRequest request, HttpSession session ) throws Exception {
@@ -102,7 +103,7 @@ public class ApiController {
 		//delete from user where user_no order by user_no desc limit 1;
 		//delete from user where user_no=(select user_no from user order by user_no desc limit 1)l
 		//alter table user modify user_login varchar(10) default 'basic'; 
-		//insert구문에 user_login 값 있으면 추가 아니면 없이 
+	
 		session=request.getSession();
 		if(service.loginUser(dto)==null) {
 			service.insert_naver(dto);

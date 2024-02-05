@@ -114,6 +114,7 @@ public class Naver_login {
 		String profile_image = response.get("profile_image").getAsString();
 		String email = response.get("email").getAsString();
 		String id=response.get("id").getAsString();
+		
 		result.put("name", name);
 		result.put("gender", gender);
 		result.put("birthday", birthday);
