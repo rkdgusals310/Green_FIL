@@ -7,10 +7,10 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.company.api.Random;
 import com.company.dao.UserDao;
-import com.company.dto.UserVoDto;
-import com.company.dto.MainContentDto;
 import com.company.dto.UserDto;
+import com.company.dto.UserVoDto;
 
 @Service
 public class UserServiceImpl implements UserService {
@@ -31,6 +31,7 @@ public class UserServiceImpl implements UserService {
 	public UserDto loginUser(UserDto dto) {
 		return dao.loginUser(dto);
 	}
+
 	@Override
 	public int insert_user(UserDto dto) {
 		try {
@@ -40,16 +41,31 @@ public class UserServiceImpl implements UserService {
 		}
 		return dao.insert(dto);
 	}
+
 	@Override
-	public int insert_kakao(UserDto dto) {
+	public int insert_naver(UserDto dto) {
 		try {
 			dto.setUser_ip(InetAddress.getLocalHost().getHostAddress());
-			dto.setUser_mobile(null);
+		} catch (UnknownHostException e) {
+			e.printStackTrace();
+		}
+		
+		return  dao.insert(dto);
+	}
+	
+	@Override
+	public int insert_kakao(UserDto dto) {
+		Random random = new Random();
+		try {
+			dto.setUser_ip(InetAddress.getLocalHost().getHostAddress());
+			dto.setUser_mobile(random.random_mobile());
 		} catch (UnknownHostException e) {
 			e.printStackTrace();
 		}
 		return dao.insert(dto);
 	}
+	
+	
 	@Override
 	public int update_user(UserDto dto) {
 		return dao.update(dto);
@@ -95,8 +111,6 @@ public class UserServiceImpl implements UserService {
 	public int delete_myconetent(UserDto dto) {
 		return dao.delete_myconetent(dto);
 	}
-
-	
 
 	
 }

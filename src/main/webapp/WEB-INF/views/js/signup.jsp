@@ -124,9 +124,9 @@
 							<strong>성별</strong> <strong class="required">*</strong>
 						</h3>
 					</div>
-					<label for="m">남자</label> <input type="radio" id="m"
-						name="user_sex" value="m"> <label for="w">여자</label> <input
-						type="radio" id="w" name="user_sex" value="w">
+					<label for="M">남자</label> <input type="radio" id="M"
+						name="user_sex" value="M"> <label for="F">여자</label> <input
+						type="radio" id="F" name="user_sex" value="F">
 				</div>
 				<div class="btn_area">
 					<input type="submit" id="btnJoin" value="인증확인">

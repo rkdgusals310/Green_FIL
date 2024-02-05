@@ -8,6 +8,7 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
+import com.company.api.Random;
 import com.company.dto.MainContentDto;
 import com.company.dto.UserDto;
 import com.company.dto.UserVoDto;
@@ -52,5 +53,11 @@ public class Test001 {
 		dto.setUser_pass("a456");
 		
 	}
-
+	 
+	@Test @Ignore
+	public void test3() {
+		Random random= new Random();
+		
+		System.out.println(random.random_code());
+	}
 }

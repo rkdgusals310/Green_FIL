@@ -132,24 +132,24 @@ input[type=radio] {
 			<p id="pwcheck"></p>
 			</div>
 			<c:choose>
-			<c:when test="${myinfo.user_sex eq'm' }">
-			<div class="title">
-			<p style="margin-right:80px"><strong>성별</strong> <strong class="required">*</strong></p>
-				<label for="m">남자</label> 
-				<input type="radio" id="m" name="user_sex" value="m" checked> 
-				<label for="w">여자</label> 
-				<input type="radio" id="w" name="user_sex" value="w">
-			</div>
-			</c:when>			
-			<c:when test="${myinfo.user_sex eq'w' }">
-			<div class="title">
-			<p style="margin-right:80px"><strong>성별</strong> <strong class="required">*</strong></p>
-				<label for="m">남자</label> 
-				<input type="radio" id="m" name="user_sex" value="m" > 
-				<label for="w">여자</label> 
-				<input type="radio" id="w" name="user_sex" value="w" checked>
-			</div>
-			</c:when>			
+				<c:when test="${myinfo.user_sex eq 'M' || myinfo.user_sex eq 'male'}">
+				<div class="title">
+				<p style="margin-right:80px"><strong>성별</strong> <strong class="required">*</strong></p>
+					<label for="M">남자</label> 
+					<input type="radio" id="M" name="user_sex" value="M" checked> 
+					<label for="F">여자</label> 
+					<input type="radio" id="F" name="user_sex" value="F">
+				</div>
+				</c:when>			
+				<c:when test="${myinfo.user_sex eq 'F' || myinfo.user_sex eq 'female'}">
+				<div class="title">
+				<p style="margin-right:80px"><strong>성별</strong> <strong class="required">*</strong></p>
+					<label for="M">남자</label> 
+					<input type="radio" id="M" name="user_sex" value="M" > 
+					<label for="F">여자</label> 
+					<input type="radio" id="F" name="user_sex" value="F" checked>
+				</div>
+				</c:when>			
 			
 			</c:choose>
 			<div class="title">

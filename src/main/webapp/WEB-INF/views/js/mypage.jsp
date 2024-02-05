@@ -97,7 +97,14 @@
 				<p>
 					성별 <strong class="required">*</strong>
 				</p>
-				<p class="margin_left">${myinfo.user_sex }</p>
+				<c:choose>
+					<c:when test="${myinfo.user_sex eq 'M' || myinfo.user_sex eq 'male' }">
+						<p class="margin_left">남자</p>
+					</c:when>
+					<c:when test="${myinfo.user_sex eq 'F' || myinfo.user_sex eq 'female' }">
+						<p class="margin_left">여자</p>
+					</c:when>
+				</c:choose>
 			</div>
 			<div class="title">
 				<p>

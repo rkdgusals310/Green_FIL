@@ -2,10 +2,11 @@ package com.company.api;
 
 
 
-
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.request;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.HashMap;
 import java.util.Map;
@@ -14,19 +15,20 @@ import org.springframework.stereotype.Component;
 
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
+import com.google.protobuf.Parser;
 
 
 @Component
-public class Kakao_login {
+public class Naver_login {
 
-	public String kakaoToken(String code){
+	public String naverLogin(String code){
 		
-		String client_id = "d00005ed65e673d8957a8eb42c7007d5";
-		String redirect_uri = "http://localhost:8181/project_FIL/kakao.js&response_type=code&scope=account_email,gender,birthday&prompt=select_account";
+		String client_id = "rNzGeKDyv6_oml2GeQla";
+		String client_secret="zBHTb6rbhO";
+		//String redirect_uri = "http://localhost:8181/project_FIL/naver.js";
 
-		String tokenUrl = "https://kauth.kakao.com/oauth/token?";
-		tokenUrl += "grant_type=authorization_code" + "&client_id=" + client_id + "&redirect_uri=" + redirect_uri
-				+ "&code=" + code;
+		String tokenUrl = "https://nid.naver.com/oauth2.0/token?";
+		tokenUrl += "grant_type=authorization_code" + "&client_id=" + client_id +"&client_secret=" +client_secret+ "&code=" + code;
 		
 		String token ="";
 		URL url = null;
@@ -80,12 +82,12 @@ public class Kakao_login {
 		String infoResult="";
 	
 		System.out.println(token);
-		String userinfoUrl="https://kapi.kakao.com/v2/user/me";
+		String userinfoUrl="https://openapi.naver.com/v1/nid/me";
 		url = new URL(userinfoUrl);
 		conn = (HttpURLConnection) url.openConnection();
 		conn.setRequestMethod("GET");
 		conn.setRequestProperty("Authorization", "Bearer "+token);
-		conn.setRequestProperty("Content-type", "application/x-www-form-urlencoded;charset=utf-8");
+		//conn.setRequestProperty("Content-type", "application/x-www-form-urlencoded;charset=utf-8");
 		
 		if(conn.getResponseCode()==200) {
 			br = new BufferedReader(new InputStreamReader(conn.getInputStream()));
@@ -99,26 +101,30 @@ public class Kakao_login {
 		conn.disconnect();
 		infoResult= buffer.toString();
 		System.out.println("STEP4) "+infoResult);
+		
 		JsonParser parser=new JsonParser();
 		JsonObject job=(JsonObject) parser.parse(infoResult);
-		JsonObject props=(JsonObject) job.get("properties");
-		JsonObject kaccount=(JsonObject) job.get("kakao_account");
+		JsonObject response=(JsonObject) job.get("response");
 		
-		String id=job.get("id").getAsString();
-		String nickname = props.get("nickname").getAsString();
-		String profile_image=props.get("profile_image").getAsString();
-		String email = kaccount.get("email").getAsString();
-		String birthday = kaccount.get("birthday").getAsString();
-		String gender = kaccount.get("gender").getAsString();
+		String name = response.get("name").getAsString();
+		String gender = response.get("gender").getAsString();
+		String birthday = response.get("birthday").getAsString();
+		String birthyear = response.get("birthyear").getAsString();
+		String mobile = response.get("mobile").getAsString();
+		String profile_image = response.get("profile_image").getAsString();
+		String email = response.get("email").getAsString();
+		String id=response.get("id").getAsString();
 		
-		result.put("id", id);
-		result.put("nickname", nickname );
-		result.put("profile_image", profile_image); 
-		result.put("email", email);
-		result.put("birthday", birthday);
+		result.put("name", name);
 		result.put("gender", gender);
+		result.put("birthday", birthday);
+		result.put("birthyear", birthyear);
+		result.put("mobile", mobile);
+		result.put("profile_image", profile_image);
+		result.put("email", email);
+		result.put("id", id);
 		return result;
-		
+	
 		
 	}
 	
