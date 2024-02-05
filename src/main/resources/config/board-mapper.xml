@@ -58,7 +58,7 @@
   		select board_no,user_name,board_title,board_hit,board_open,status_no,board_date
 		from board b 
 		join user u on u.user_no=b.user_no
-		where grade_no=3 and b.user_no=1001
+		where grade_no=3 and b.user_no=#{user_no}
 		<!-- #{user_no} -->
 		order by b.board_no desc 
   </select>
@@ -135,7 +135,7 @@
   </delete>
   
   <select id="rootQueList" resultType="BoardVoDto">	<!-- 관리자 문의 관리 -->
-  		select board_no,user_name,board_title,board_open,status_no,board_date
+  		select board_no,user_name,board_title,board_open,status_no,board_date,macro_no
 		from board b 
 		join user u on u.user_no=b.user_no
 		where grade_no=3 
@@ -167,6 +167,10 @@
   
     <select id="macroAnswer"  resultType="MacroDto" parameterType="MacroDto">	<!-- 매크로 답변 디테일 -->
   		select macro_no,macro_content from macro
+  </select>
+  
+   <select id="macroSuccess"  resultType="BoardVoDto" parameterType="BoardVoDto">	<!-- 매크로 답변 디테일 -->
+  		select macro_content from  board b join macro m on m.macro_no=b.macro_no where b.macro_no=#{macro_no} and board_no=#{board_no}
   </select>
   
   <insert id="macroWrite"  parameterType="MacroDto">	<!-- 매크로 답변 리스트 추가 -->
