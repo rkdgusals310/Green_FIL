@@ -50,7 +50,8 @@ public interface BoardDao {
 	public int noticeUpdate_2(BoardVoDto bvodto);// 공지사항 글 수정
 	
 	public List<BoardVoDto> rootQueList();// 관리자 문의 관리
-	public List<MacroDto> macroAnswer();// 관리자 문의 관리
+	public List<MacroDto> macroAnswer();// 관리자 매크로 답변 리스트
+	public BoardVoDto macroSuccess(BoardVoDto vodto);// 관리자 매크로 답변완료시
 	
 	
 	public int reply(BoardDto bdto);// 관리자 문의 관리 답변달기
