@@ -18,6 +18,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.khm.api.EMail;
 import com.khm.dto.BoardDto;
@@ -52,6 +53,16 @@ public class BoardController {
 		model.addAttribute("paging",service.paging(pstartno));
 		model.addAttribute("myQueList",service.myQueList(bdto));
 		return "home"; 
+	}
+	
+	@RequestMapping(value="/search_user.hm", method = RequestMethod.GET)
+	@ResponseBody
+	public Map<String,Object> search_user(BoardVoDto dto,Model model) {
+		Map<String,Object> para= new HashMap<>();
+		para.put("para",service.search_home(dto));
+		System.out.println(dto.getKeyword());
+		System.out.println(dto.getOption());
+		return para;
 	}
 	
 	@RequestMapping(value="/detail_que.hm", method = RequestMethod.GET)

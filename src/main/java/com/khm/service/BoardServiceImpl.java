@@ -33,10 +33,15 @@ public class BoardServiceImpl implements BoardService {
 	}// 홈에서 문의사항 읽어오기
 	
 	@Override
-	public List<BoardVoDto> search_home(Map<String, Integer> para) {
+	public List<BoardVoDto> search_home(BoardVoDto dto) {
 		// TODO Auto-generated method stub
-		return null;
+		return dao.search_home(dto);
 	}
+//	@Override
+//	public List<BoardVoDto> search_home(Map<String, Integer> para) {
+//		// TODO Auto-generated method stub
+//		return null;
+//	}
 	
 	
 	// 페이징

@@ -12,7 +12,8 @@ import com.khm.paging.PagingDto;
 public interface BoardService {
 	public BoardDto readNotice();// 홈에서 공지사항 읽어오기
 	public List<BoardVoDto> readQue(Map<String, Integer> para);// 홈에서 문의사항 읽어오기
-	public List<BoardVoDto> search_home(Map<String, Integer> para);// 홈에서 문의사항 읽어오기
+//	public List<BoardVoDto> search_home(Map<String, Integer> para);// 홈에서 문의사항 읽어오기
+	public List<BoardVoDto> search_home(BoardVoDto dto);// 홈에서 문의사항 읽어오기
 	public PagingDto paging(int pstartno);
 	
 	

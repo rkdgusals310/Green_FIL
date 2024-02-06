@@ -1,8 +1,12 @@
 package com.khm.dto;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Data
+@NoArgsConstructor
+@AllArgsConstructor
 public class BoardVoDto {
 	private int board_no;
 	private String board_title;
@@ -20,6 +24,10 @@ public class BoardVoDto {
     private int user_no;
     private String board_start;
     private String board_end;
+    
+    private String keyword;
+    private String option;
+    
 }
 /*
 	#{board_title} ,#{board_content} ,#{board_open} ,#{board_start},#{board_end} ,#{user_no} 

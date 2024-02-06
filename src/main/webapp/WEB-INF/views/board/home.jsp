@@ -2,7 +2,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ include file="../inc/login_header.jsp"%>
-
+<%@page import="java.sql.*"%>
 <div class="container home_body">
 
 	<ul class="nav nav-tabs">
@@ -39,26 +39,63 @@
 				</table>
 			</div>
 			<div>
-				<form action="" class="search-form" method="get">
+			
 					<fieldset class="srch">
-						<select class="search-option" name="option">
+						<select class="search-option" name="option" id="search-option">
 							<option value="All">제목+내용</option>
 							<option value="Title">제목만</option>
 							<option value="Writer">작성자</option>
 						</select>
-		                <input type="text" name="keyword" id="keyword"  title="검색어" class="search-input" value="">
-		                <input type="button" class="search-button" alt="검색" value="검색" />
+		                <input type="text" name="keyword" id="keyword"  title="검색어" class="search-input">
+		                <input type="button" class="search-button" alt="검색" value="검색"  id="search_btn"/>
 	       			 </fieldset>
-       			 </form>
+       			 
 			</div>
 			<div id="line1"></div>
 			<script>
-			
+				$(function(){
+			   		$("#search_btn").on("click" , function(){
+			   		    if(	$("#keyword").val() == "" ){
+			   		    	alert("빈칸입니다.\n확인해주세요");
+			   		    	$("#keyword").focus();
+			   		    	return false;
+			   		    }else{ searchUser();}  
+			   		});
+			   	});
+				function searchUser(){
+					console.log('go');
+					$.ajax({
+						url:"search_user.hm",
+						type:"GET",
+						dataType:"json",
+						data:{"keyword":$("#keyword").val(),"option":$("#search-option").val()},
+						error:function(xhr, status, msg){ alert(status+"/" +msg);} , 
+						success:searchResult
+					});
+				}
+				
+				function searchResult(json){
+					console.log('List');
+					$("#boardtable tbody").empty();
+					 $.each(json.para, function(idx, search_home){
+						$("<tr>")
+						.append(  $("<td>").html(search_home.board_no) )
+						.append(  $("<td>").html(search_home.user_name) )
+						.append(  $("<td>").html(search_home.board_title) )
+						.append(  $("<td>").html(search_home.board_hit) )
+						.append(  $("<td>").html(search_home.status_no) )
+						.append(  $("<td>").html(search_home.board_date) )
+						.appendTo("#boardtable tbody");
+					}); 
+				
+				}
+				
+				
 			</script>
 			<div id="home_question_back_back">
 				<div id="home_question_back">
 					<!-- 홈 - 문의사항 -->
-					<table class="table">
+					<table class="table" id="boardtable">
 					<colgroup> 
 				    	<col style="width: 10%;"/> 
 				        <col style="width: 10%;"/> 
@@ -78,7 +115,6 @@
 							</tr>
 						</thead>
 						<tbody>
-
 							<c:forEach var="list" items="${readQue}" varStatus="status">
 								<tr>
 									<td><a href="detail_que.hm?board_no=${list.board_no}">${paging.listtotal-paging.pstartno-status.index}</a></td>
@@ -95,6 +131,7 @@
 							</c:forEach>
 						</tbody>
 					</table>
+					
 					<table id="paging_user">
 						<tfoot>
 							<tr>

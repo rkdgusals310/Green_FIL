@@ -6,26 +6,25 @@
 
 <mapper namespace="com.company.dao.BoardDao">
 
-  <select id="search_home" parameterType="BoardVoDto">	<!-- 홈에서 문의사항 검색하기 -->
-  	select board_no,user_name,board_title,board_hit,status_no,board_date,board_content
+  <select id="search_home" parameterType="BoardVoDto" resultType="BoardVoDto">	<!-- 홈에서 문의사항 검색하기 -->
+  	select board_no,user_name,board_title,board_hit,status_no,board_date,board_content,u.user_no
 		from board b 
 		join user u on u.user_no=b.user_no
-		where board_open=true and grade_no=3 
-		and true
+		where board_open=true and grade_no=3
 		<if test='option=="All"'>
-			AND (board_content like concat('%',#{keyword},'%')
-			OR board_title like concat('%',#{keyword},'%'))
+			and (board_content like concat('%',#{keyword},'%')
+			or board_title like concat('%',#{keyword},'%'))
 		</if>
 		
-		<if test='option=="Title"'>
-			AND (board_title like concat('%',#{keyword},'%')
+		<if test='option =="Title"'>
+			AND board_title like concat('%',#{keyword},'%')
 		</if>
 		
-		<if test='option=="Writer"'>
-			AND (user_name like concat('%',#{keyword},'%')
+		<if test='option =="Writer"'>
+			AND user_name like concat('%',#{keyword},'%')
 		</if>
-		order by board_no desc
-		limit #{pstartno},#{onepagelimit}
+		<!-- order by board_no desc -->
+		<!-- limit #{pstartno},#{onepagelimit} -->
   </select>
 
   <select id="readNotice" resultType="BoardDto" > 	<!-- 홈에서 공지사항 읽어오기 -->
