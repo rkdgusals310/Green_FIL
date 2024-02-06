@@ -38,7 +38,21 @@
 					</tbody>
 				</table>
 			</div>
+			<div>
+				<form action="" class="search-form" method="get">
+					<fieldset class="srch">
+						<select class="search-option" name="option">
+							<option value="All">제목+내용</option>
+							<option value="Title">제목만</option>
+							<option value="Writer">작성자</option>
+						</select>
+		                <input type="text" name="keyword" id="keyword"  title="검색어" class="search-input" value="">
+		                <input type="button" class="search-button" alt="검색" value="검색" />
+	       			 </fieldset>
+       			 </form>
+			</div>
 			<div id="line1"></div>
+			
 			<div id="home_question_back_back">
 				<div id="home_question_back">
 					<!-- 홈 - 문의사항 -->

@@ -10,8 +10,10 @@ import com.khm.dto.MacroDto;
 
 @MyDao
 public interface BoardDao {
+	
 	public BoardDto readNotice();// 홈에서 공지사항 읽어오기
 	public List<BoardVoDto> readQue(Map<String, Integer> para);// 홈에서 문의사항 읽어오기
+	public List<BoardVoDto> search_home(Map<String, Integer> para);// 홈에서 문의사항 읽어오기
 	public int listTotal();
 	
 	public BoardVoDto queDetail(BoardVoDto bdto);// 문의사항 디테일

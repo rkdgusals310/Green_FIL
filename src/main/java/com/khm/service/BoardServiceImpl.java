@@ -32,6 +32,13 @@ public class BoardServiceImpl implements BoardService {
 		return dao.readQue(para);
 	}// 홈에서 문의사항 읽어오기
 	
+	@Override
+	public List<BoardVoDto> search_home(Map<String, Integer> para) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	
+	
 	// 페이징
 	@Override
 	public PagingDto paging(int pstartno) {
@@ -176,5 +183,7 @@ public class BoardServiceImpl implements BoardService {
 	public BoardVoDto macroSuccess(BoardVoDto vodto) {
 		return dao.macroSuccess(vodto);
 	}
+
+
 		
 }
