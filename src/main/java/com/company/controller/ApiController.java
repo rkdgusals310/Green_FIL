@@ -1,10 +1,12 @@
 package com.company.controller;
 
+import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -110,7 +112,10 @@ public class ApiController {
 	}
 	
 	@RequestMapping("naver.js")
-	public String naverLogin(@RequestParam String code,Model model, HttpServletRequest request, HttpSession session) throws Exception {
+	public String naverLogin(@RequestParam String code,Model model, HttpServletRequest request, HttpServletResponse response, HttpSession session) throws Exception {
+		request.setCharacterEncoding("UTF-8");
+		response.setContentType("text/html, charset=UTF-8");
+		PrintWriter print=response.getWriter();
 		log.info("code@@@@:"+code);
 		String token=naver.naverLogin(code);
 		log.info("token@@@:"+token);
@@ -141,6 +146,7 @@ public class ApiController {
 			service.insert_api(dto);
 			if(service.loginUser(dto)!=null) {
 				session.setAttribute("login", service.loginUser(dto) );
+				print.print("<script>alert('마이페이지에서 비밀번호를 변경해주세요!!');</script>");
 				return "redirect:/home.js";
 				}else {
 					return "login";
@@ -165,6 +171,7 @@ public class ApiController {
 	
 			if(service.loginUser(dto)!=null) {
 			session.setAttribute("login", service.loginUser(dto) );
+			print.print("<script>alert('마이페이지에서 비밀번호를 변경해주세요!!');</script>");
 			return "redirect:/home.js";
 			}else {
 				return "login";
