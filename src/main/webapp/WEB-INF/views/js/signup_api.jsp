@@ -69,7 +69,7 @@
 
 <!-- wrapper -->
 <div id="wrapper">
-	<form method="post" action="signup_2.js" name="join" id="sign1">
+	<form method="post" action="signinsert.js" name="join" id="sign1">
 		<fieldset style="border: none;">
 
 			<div id="content">
@@ -149,7 +149,7 @@
 			
 				</div>
 				<div class="btn_area">
-					<input type="submit" id="btnJoin" value="인증확인">
+					<input type="submit" id="btnJoin" value="가입하기">
 				</div>
 			</div>
 		</fieldset>

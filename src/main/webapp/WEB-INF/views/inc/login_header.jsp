@@ -38,8 +38,8 @@
 <style>
 #start_img{
     position: absolute;
-    top: 170px;
-    left: 700px;
+    top: 205px;
+    left: 850px;
     }
 </style>
 
