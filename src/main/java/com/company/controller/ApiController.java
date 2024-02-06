@@ -85,29 +85,16 @@ public class ApiController {
 				return "login";
 			}
 		}
-		else {
-			Random random = new Random();
-	  String random_mobile=random.random_mobile();
-	  String nickname=(String) userinfo.get("nickname");
-	  String birthday="2024"+(String) userinfo.get("birthday");
-	  String gender=(String) userinfo.get("gender");
-	  
-		dto.setUser_mobile(random_mobile);
-		dto.setUser_email(email);
-		dto.setUser_pass(id);
-		dto.setUser_name(nickname);
-		dto.setUser_birth(birthday);
-		dto.setUser_sex(gender);
-			
-		if(service.loginUser(dto)==null) {
-		service.insert_api(dto);
-		} 
-			if(service.loginUser(dto)!=null) {
-			session.setAttribute("login", service.loginUser(dto) );
-			return "redirect:/home.js";
-			}else {
-				return "login";
-			}
+			else {
+		  String name=(String) userinfo.get("nickname");
+		  String gender=(String) userinfo.get("gender");
+		  
+		  request.setAttribute("name", name);
+		  request.setAttribute("gender", gender);
+		  request.setAttribute("email", email);
+		  
+		  return "signup_api";
+		
 		}
 	}
 	
@@ -115,7 +102,6 @@ public class ApiController {
 	public String naverLogin(@RequestParam String code,Model model, HttpServletRequest request, HttpServletResponse response, HttpSession session) throws Exception {
 		request.setCharacterEncoding("UTF-8");
 		response.setContentType("text/html, charset=UTF-8");
-		PrintWriter print=response.getWriter();
 		log.info("code@@@@:"+code);
 		String token=naver.naverLogin(code);
 		log.info("token@@@:"+token);
@@ -146,7 +132,6 @@ public class ApiController {
 			service.insert_api(dto);
 			if(service.loginUser(dto)!=null) {
 				session.setAttribute("login", service.loginUser(dto) );
-				print.print("<script>alert('마이페이지에서 비밀번호를 변경해주세요!!');</script>");
 				return "redirect:/home.js";
 				}else {
 					return "login";
@@ -161,25 +146,13 @@ public class ApiController {
 		  String mobile=(String) userinfo.get("mobile"); 
 		  mobile=mobile.replaceAll("[^0-9]", ""); 
 		  String birth=birthyear+"-"+birthday;
-		  dto.setUser_pass(id);
-		  dto.setUser_mobile(mobile);
-		  dto.setUser_name(name);
-		  dto.setUser_sex(gender);
-		  dto.setUser_birth(birth);
-		 
-		  service.insert_user(dto);
-	
-			if(service.loginUser(dto)!=null) {
-			session.setAttribute("login", service.loginUser(dto) );
-			print.print("<script>alert('마이페이지에서 비밀번호를 변경해주세요!!');</script>");
-			return "redirect:/home.js";
-			}else {
-				return "login";
-			}
-			//alter table user modify user_pass varchar(100) not null;
-			//delete from user where user_no order by user_no desc limit 1;
-			//delete from user where user_no=(select user_no from user order by user_no desc limit 1)l
-			//alter table user modify user_login varchar(10) default 'basic'; 
+		  
+		  request.setAttribute("mobile", mobile);
+		  request.setAttribute("name", name);
+		  request.setAttribute("gender", gender);
+		  request.setAttribute("birth", birth);
+		  request.setAttribute("email", email);
+		  return "signup_api";
 		}
 
 	}

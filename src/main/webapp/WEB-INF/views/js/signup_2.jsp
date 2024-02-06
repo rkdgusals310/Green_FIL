@@ -3,6 +3,12 @@
 <%@ include file="../inc/signup_header.jsp"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <style>
+.btn_area_s {
+	margin-bottom: 10px;
+	display: flex;
+	justify-content: space-between;
+	align-items: baseline;
+}
 #btnJoin{
 	font-size:18px;
 	font-weight:bold;
@@ -20,6 +26,20 @@
 	color: crimson;
     font-size: 10px;
     text-align: right;
+}
+
+#sign_sex {
+	display: flex;
+	flex-direction: row;
+	align-items: baseline;
+}
+
+#sign_sex input[type=radio] {
+	margin: 0px 50px
+}
+
+#sex_title {
+	margin-right: 100px
 }
 </style>
 
@@ -47,7 +67,8 @@
 					placeholder="이메일을 입력해주세요">
 				</span>
 			</div>
-
+	
+		<c:if test="${param.code != null }">
 			<div class="number">
 				<div class="btn_area_s">
 					<h3 class="join_title">
@@ -58,6 +79,7 @@
 					name="code" class="field" value="${param.code } " readonly>
 				</span>
 			</div>
+		</c:if>
 			
 			<div class="password">
 				<h3 class="join_title">
