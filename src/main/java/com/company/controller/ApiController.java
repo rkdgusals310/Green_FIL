@@ -87,12 +87,10 @@ public class ApiController {
 		}
 		else {
 			Random random = new Random();
-	  String random_mobile=random.random_mobile();
 	  String nickname=(String) userinfo.get("nickname");
 	  String birthday="2024"+(String) userinfo.get("birthday");
 	  String gender=(String) userinfo.get("gender");
 	  
-		dto.setUser_mobile(random_mobile);
 		dto.setUser_email(email);
 		dto.setUser_pass(id);
 		dto.setUser_name(nickname);
