@@ -1,8 +1,12 @@
 package com.company.controller;
 
+import java.io.PrintWriter;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -49,71 +53,133 @@ public class ApiController {
 		//model.addAttribute("code", code);
 		//model.addAttribute("userinfo", userinfo);
 		log.info("userinfo@@@@@@@@@@@@@@"+userinfo);
+		
+		session=request.getSession();
 		UserDto dto=new UserDto();
+		String profile_image=(String) userinfo.get("profile_image");
 		String email=(String) userinfo.get("email");
 		String id=(String) userinfo.get("id");
-		String nickname=(String) userinfo.get("nickname");
-		String profile_image=(String) userinfo.get("profile_image");
-		String birthday="2024"+(String) userinfo.get("birthday");
-		String gender=(String) userinfo.get("gender");
 		
+		dto.setUser_email(email);
+		UserDto list=service.loginInfo(dto);
+		if(list!=null) {
+			
+		
+		String birth=list.getUser_birth();
+		String mobile=list.getUser_mobile();
+		String user_pass=list.getUser_pass();
+		String user_sex=list.getUser_sex();
+		String user_name=list.getUser_name();
+		
+		dto.setUser_birth(birth);
+		dto.setUser_mobile(mobile);
+		dto.setUser_pass(user_pass);
+		dto.setUser_sex(user_sex);
+		dto.setUser_name(user_name);
+		dto.setUser_login(id);
+		service.insert_api(dto);
+		if(service.loginUser(dto)!=null) {
+			session.setAttribute("login", service.loginUser(dto) );
+			return "redirect:/home.js";
+			}else {
+				return "login";
+			}
+		}
+		else {
+			Random random = new Random();
+	  String random_mobile=random.random_mobile();
+	  String nickname=(String) userinfo.get("nickname");
+	  String birthday="2024"+(String) userinfo.get("birthday");
+	  String gender=(String) userinfo.get("gender");
+	  
+		dto.setUser_mobile(random_mobile);
 		dto.setUser_email(email);
 		dto.setUser_pass(id);
 		dto.setUser_name(nickname);
 		dto.setUser_birth(birthday);
 		dto.setUser_sex(gender);
-		session=request.getSession();
+			
 		if(service.loginUser(dto)==null) {
-		service.insert_kakao(dto);
-		}
-		if(service.loginUser(dto)!=null) {
-		session.setAttribute("login", service.loginUser(dto) );
-		return "redirect:/home.js";
-		}else {
-			return "login";
+		service.insert_api(dto);
+		} 
+			if(service.loginUser(dto)!=null) {
+			session.setAttribute("login", service.loginUser(dto) );
+			return "redirect:/home.js";
+			}else {
+				return "login";
+			}
 		}
 	}
 	
 	@RequestMapping("naver.js")
-	public String naverLogin(@RequestParam String code,Model model, HttpServletRequest request, HttpSession session) throws Exception {
+	public String naverLogin(@RequestParam String code,Model model, HttpServletRequest request, HttpServletResponse response, HttpSession session) throws Exception {
+		request.setCharacterEncoding("UTF-8");
+		response.setContentType("text/html, charset=UTF-8");
+		PrintWriter print=response.getWriter();
 		log.info("code@@@@:"+code);
 		String token=naver.naverLogin(code);
 		log.info("token@@@:"+token);
 		Map<String, Object> userinfo=naver.getUserInfo(token);
 		log.info("userinfo@@@@@: "+userinfo);
+		session=request.getSession();
 		UserDto dto= new UserDto();
-		String birthday=(String) userinfo.get("birthday");
+		
 		String profile_image=(String) userinfo.get("profile_image");
-		String gender=(String) userinfo.get("gender");
-		String birthyear=(String) userinfo.get("birthyear");
-		String name=(String) userinfo.get("name");
-		String mobile=(String) userinfo.get("mobile");
-		mobile=mobile.replaceAll("[^0-9]", "");
 		String id=(String) userinfo.get("id");
 		String email=(String) userinfo.get("email");
-		String birth=birthyear+"-"+birthday;
 
-		dto.setUser_birth(birth);
 		dto.setUser_email(email);
-		dto.setUser_mobile(mobile);
-		dto.setUser_name(name);
-		dto.setUser_sex(gender);
-		dto.setUser_pass(id);
-		//alter table user modify user_pass varchar(100) not null;
-		//delete from user where user_no order by user_no desc limit 1;
-		//delete from user where user_no=(select user_no from user order by user_no desc limit 1)l
-		//alter table user modify user_login varchar(10) default 'basic'; 
+		UserDto list=service.loginInfo(dto);
+		if(list != null) {			
+			String birth=list.getUser_birth();
+			String mobile=list.getUser_mobile();
+			String user_pass=list.getUser_pass();
+			String user_sex=list.getUser_sex();
+			String user_name=list.getUser_name();
+			
+			dto.setUser_birth(birth);
+			dto.setUser_mobile(mobile);
+			dto.setUser_pass(user_pass);
+			dto.setUser_sex(user_sex);
+			dto.setUser_name(user_name);
+			dto.setUser_login(id);
+			service.insert_api(dto);
+			if(service.loginUser(dto)!=null) {
+				session.setAttribute("login", service.loginUser(dto) );
+				print.print("<script>alert('마이페이지에서 비밀번호를 변경해주세요!!');</script>");
+				return "redirect:/home.js";
+				}else {
+					return "login";
+				}
+		}
+		else {
+			
+		  String birthday=(String) userinfo.get("birthday"); 
+		  String gender=(String) userinfo.get("gender");
+		  String birthyear=(String) userinfo.get("birthyear");
+		  String name=(String) userinfo.get("name"); 
+		  String mobile=(String) userinfo.get("mobile"); 
+		  mobile=mobile.replaceAll("[^0-9]", ""); 
+		  String birth=birthyear+"-"+birthday;
+		  dto.setUser_pass(id);
+		  dto.setUser_mobile(mobile);
+		  dto.setUser_name(name);
+		  dto.setUser_sex(gender);
+		  dto.setUser_birth(birth);
+		 
+		  service.insert_user(dto);
 	
-		session=request.getSession();
-		if(service.loginUser(dto)==null) {
-			service.insert_naver(dto);
+			if(service.loginUser(dto)!=null) {
+			session.setAttribute("login", service.loginUser(dto) );
+			print.print("<script>alert('마이페이지에서 비밀번호를 변경해주세요!!');</script>");
+			return "redirect:/home.js";
+			}else {
+				return "login";
 			}
-		
-		if(service.loginUser(dto)!=null) {
-		session.setAttribute("login", service.loginUser(dto) );
-		return "redirect:/home.js";
-		}else {
-			return "login";
+			//alter table user modify user_pass varchar(100) not null;
+			//delete from user where user_no order by user_no desc limit 1;
+			//delete from user where user_no=(select user_no from user order by user_no desc limit 1)l
+			//alter table user modify user_login varchar(10) default 'basic'; 
 		}
 
 	}
