@@ -71,10 +71,10 @@
   </insert>
   <update id="queUpdate" parameterType="BoardVoDto">	<!-- 문의사항 수정하기 -->
   		update board set board_title=#{board_title},board_content=#{board_content},board_open=#{board_open}
-		where board_no=#{board_no} and status_no=2
+		where board_no=#{board_no} and status_no=2 and user_no=#{user_no}
   </update>
   <delete id="queDelete_u" parameterType="BoardDto">	<!--  문의사항 삭제하기(사용자) -->
-  		delete from board where board_no=#{board_no} 
+  		delete from board where board_no=#{board_no} and user_no=#{user_no}
   </delete>
   
   <select id="myQueList" resultType="BoardVoDto" parameterType="BoardDto">	<!-- 내 문의내역 -->

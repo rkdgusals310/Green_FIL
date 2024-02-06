@@ -71,10 +71,10 @@ public class BoardController {
 		response.setContentType("text/html; charset=UTF-8");
 		
 		PrintWriter out=response.getWriter();
-	
+		String url="home.hm?user_no="+dto.getUser_no();
 		
 		if(service.queWrite(dto)>0) {
-			out.print("<script>alert('글쓰기 성공'); location.href='home.hm';</script>");
+			out.print("<script>alert('글쓰기 성공'); location.href='"+url+"';</script>");
 		}
 		else {
 			out.print("<script>alert('글쓰기 실패');history.go(-1);</script>");
@@ -94,9 +94,9 @@ public class BoardController {
 		response.setContentType("text/html; charset=UTF-8");
 		
 		PrintWriter out=response.getWriter();
-	
+		String url="home.hm?user_no="+dto.getUser_no();
 		if(service.queUpdate(dto)>0) {
-			out.print("<script>alert('글 수정 성공'); location.href='home.hm';</script>"); // 추후 디테일 부분으로 바로 이동하게 설정
+			out.print("<script>alert('글 수정 성공'); location.href='"+url+"';</script>"); // 추후 디테일 부분으로 바로 이동하게 설정
 			
 		}
 		else {
@@ -111,10 +111,10 @@ public class BoardController {
 		response.setContentType("text/html; charset=UTF-8");
 		
 		PrintWriter out=response.getWriter();
-	
+		String url="home.hm?user_no="+dto.getUser_no();
 		
 		if(service.queDelete_u(dto)>0) {
-			out.print("<script>alert('글 삭제 성공'); location.href='home.hm';</script>");
+			out.print("<script>alert('글 삭제 성공'); location.href='"+url+"';</script>");
 		}
 		else {
 			out.print("<script>alert('글 삭제 실패');history.go(-1);</script>");
@@ -142,9 +142,9 @@ public class BoardController {
 		response.setContentType("text/html; charset=UTF-8");
 		
 		PrintWriter out=response.getWriter();
-	
+		String url="home.hm?user_no="+dto.getUser_no();
 		if(service.noticeUpdate(dto)>0) {
-			out.print("<script>alert('공지 수정 성공'); location.href='home.hm';</script>"); // 추후 디테일 부분으로 바로 이동하게 설정
+			out.print("<script>alert('공지 수정 성공'); location.href='"+url+"';</script>"); // 추후 디테일 부분으로 바로 이동하게 설정
 			
 		}
 		else {
@@ -159,10 +159,10 @@ public class BoardController {
 		response.setContentType("text/html; charset=UTF-8");
 		
 		PrintWriter out=response.getWriter();
-	
+		String url="home.hm?user_no="+dto.getUser_no();
 		
 		if(service.noticeDelete(dto)>0) {
-			out.print("<script>alert('공지 삭제 성공'); location.href='home.hm';</script>");
+			out.print("<script>alert('공지 삭제 성공'); location.href='"+url+"';</script>");
 		}
 		else {
 			out.print("<script>alert('공지 삭제 실패');history.go(-1);</script>");
@@ -195,10 +195,10 @@ public class BoardController {
 		response.setContentType("text/html; charset=UTF-8");
 		
 		PrintWriter out=response.getWriter();
-	
+		String url="home.hm?user_no="+dto.getUser_no();
 		
 		if(service.noticeWrite_2(dto)>0) {
-			out.print("<script>alert('글쓰기 성공'); location.href='home.hm';</script>");
+			out.print("<script>alert('글쓰기 성공'); location.href='"+url+"';</script>");
 		}
 		else {
 			out.print("<script>alert('글쓰기 실패');history.go(-1);</script>");
@@ -223,9 +223,9 @@ public class BoardController {
 		response.setContentType("text/html; charset=UTF-8");
 		
 		PrintWriter out=response.getWriter();
-	
+		String url="home.hm?user_no="+ddto.getUser_no();
 		if(service.reply(ddto)>0) {
-			out.print("<script>alert('매크로 성공'); location.href='home.hm';</script>");
+			out.print("<script>alert('매크로 성공'); location.href='"+url+"';</script>");
 			mail.naverMailSend();
 		}
 		else {
@@ -276,9 +276,10 @@ public class BoardController {
 		response.setContentType("text/html; charset=UTF-8");
 		
 		PrintWriter out=response.getWriter();
-
+		String url="home.hm?user_no="+dto.getUser_no();
+		
 		if(service.queDelete_r(dto)>0) {
-			out.print("<script>alert('게시글 삭제 성공'); location.href='home.hm';</script>");
+			out.print("<script>alert('게시글 삭제 성공'); location.href='"+url+"';</script>");
 		}
 		else {
 			out.print("<script>alert('게시글 실패');history.go(-1);</script>");

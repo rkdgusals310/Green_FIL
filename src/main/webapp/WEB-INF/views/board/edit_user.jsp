@@ -13,7 +13,7 @@
   </ul>
 
   <div> <!-- 글작성 start -->
-    <form action="${pageContext.request.contextPath}/edit_user.hm?board_no=${list.board_no}" method="post">
+    <form action="${pageContext.request.contextPath}/edit_user.hm?board_no=${list.board_no}&user_no=${login.user_no}" method="post">
       <fieldset>
         <legend>게시글을 수정해주세요!</legend>
 
