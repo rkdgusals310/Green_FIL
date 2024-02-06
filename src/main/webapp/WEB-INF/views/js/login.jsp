@@ -65,9 +65,12 @@
 				style="width: 700px; height: 350px; margin: auto; margin-top: 50px;"
 				id="login">
 				<fieldset>
+						<c:if test="${cookie.saveEmail != null }">
+							<c:set value="${cookie.saveEmail.value }" var="email" />
+						</c:if>
 					<legend>LOGIN</legend>
 					<div style="margin: 10px;">
-						<input type="text" id="userid" name="user_email" placeholder="아이디"
+						<input type="text" id="userid" name="user_email" placeholder="아이디" value="${email}"
 							style="width: 500px; height: 50px; border-radius: 10px; padding: 20px;">
 					</div>
 					<div style="margin: 10px;">
@@ -79,8 +82,16 @@
 					<div class="text-left"
 						style="display: flex; align-items: flex-start; margin: 20px 0px 20px 110px;">
 						<div>
-							<input type="checkbox" id="idcheck"> <label for="idcheck">아이디
-								기억하기</label>
+						<c:choose>
+							<c:when test="${cookie.saveEmail != null }">
+							<input type="checkbox" id="idcheck" name="idcheck" checked> 
+							<label for="idcheck">아이디 기억하기</label>
+							</c:when>						
+							<c:otherwise>
+							<input type="checkbox" id="idcheck" name="idcheck" > 
+							<label for="idcheck">아이디 기억하기</label>
+							</c:otherwise>						
+						</c:choose>
 						</div>
 					</div>
 					<div>

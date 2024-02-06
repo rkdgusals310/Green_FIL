@@ -100,8 +100,10 @@ public class ApiController {
 	
 	@RequestMapping("naver.js")
 	public String naverLogin(@RequestParam String code,Model model, HttpServletRequest request, HttpServletResponse response, HttpSession session) throws Exception {
-		request.setCharacterEncoding("UTF-8");
-		response.setContentType("text/html, charset=UTF-8");
+		/*
+		 * request.setCharacterEncoding("UTF-8");
+		 * response.setContentType("text/html, charset=UTF-8");
+		 */
 		log.info("code@@@@:"+code);
 		String token=naver.naverLogin(code);
 		log.info("token@@@:"+token);

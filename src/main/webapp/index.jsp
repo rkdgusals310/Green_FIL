@@ -5,5 +5,3 @@
 
 <!--  -->
 <%response.sendRedirect("home.js");%> 
-
-	

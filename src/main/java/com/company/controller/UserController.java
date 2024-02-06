@@ -8,6 +8,7 @@ import java.nio.charset.StandardCharsets;
 import java.util.HashMap;
 import java.util.Map;
 
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -15,10 +16,12 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.CookieValue;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.company.dto.UserDto;
@@ -36,16 +39,35 @@ public class UserController {
 	}
 
 	@GetMapping("/login.js")
-	public String login_view() {
+	public String login_view(UserDto dto, HttpServletRequest request, HttpServletResponse response) {
+		
+		String email="";
+		Cookie[] cookies = request.getCookies();
+		for(Cookie cookie:cookies) {
+			email=cookie.getValue();
+		}
+		System.out.println("email @@@@@@@@@@: "+email);
 		return "login";
 	}
 
 	@PostMapping("/login.js")
-	public String login(UserDto dto, HttpServletRequest request, HttpSession session) {
+	public String login(String idcheck, UserDto dto, HttpServletRequest request, HttpServletResponse response,HttpSession session) {
 		session = request.getSession();
+		UserDto udto=service.loginUser(dto);
+		System.out.println("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@"+idcheck);
 		if (service.loginUser(dto) != null) {
 			session.setAttribute("login", service.loginUser(dto));
+			if(idcheck!=null) {
+			Cookie cookie_email = new Cookie("saveEmail",udto.getUser_email() );
+			cookie_email.setMaxAge(60*60*24);
+			response.addCookie(cookie_email);
 			return "redirect:/home.js";
+			}else {
+				Cookie cookie_email=new Cookie("saveEmail", "");
+				cookie_email.setMaxAge(0);
+				response.addCookie(cookie_email);
+				return "redirect:/home.js";
+			}
 		} else {
 			return "login";
 		}
