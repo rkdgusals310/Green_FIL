@@ -78,22 +78,10 @@
 						<label for="newid">아이디</label> <strong class="required">*</strong>
 					</h3>
 					<span class="box int_email"> <input type="text" id="newid"
-						name="user_email" class="field" placeholder="이메일을 입력해주세요">
+						name="user_email" class="field" placeholder="이메일을 입력해주세요" value="${email}" readonly>
 					</span>
 				</div>
-				<div class="number">
-					<div class="btn_area_s">
-						<h3 class="join_title">
-							<label for="signCode">인증코드</label> <strong class="required">*</strong>
-						</h3>
-						<input type="button" class="codebtn" value="인증요청">
-					</div>
-						<p id="codeTest"></p>
-					<span class="box int_id">
-					 <input type="text" id="signCode" name="code" class="field">
-					 <input type="hidden" id="hiddenCode">
-					</span>
-				</div>
+		
 				<div class="password">
 					<h3 class="join_title">
 						<label for="newpw">비밀번호</label> <strong class="required">*</strong>
@@ -119,7 +107,7 @@
 						<label for="newname">이름</label> <strong class="required">*</strong>
 					</h3>
 					<span class="box int_name"> <input type="text" id="newname"
-						name="user_name" class="field">
+						name="user_name" class="field" value="${name }">
 					</span> <span class="error_next_box"></span>
 				</div>
 				<div class="phone">
@@ -127,7 +115,7 @@
 						<label for="newphone">휴대전화</label> <strong class="required">*</strong>
 					</h3>
 					<span class="box int_mobile"> <input type="tel"
-						id="newphone" name="user_mobile" class="field"	placeholder="'-' 빼고 입력해주세요">
+						id="newphone" name="user_mobile" class="field" value="${mobile }" placeholder="'-' 빼고 입력해주세요">
 					</span>
 				</div>
 				<div class="name">
@@ -135,8 +123,8 @@
 						<label for="newbirth">생년월일</label> <strong class="required">*</strong>
 					</h3>
 					<span class="box int_name"> <input type="date" id="newbirth"
-						name="user_birth" class="field" placeholder="ex) 19940604">
-					</span> <span class="error_next_box"></span>
+						name="user_birth" class="field" value="${birth }">
+					</span> 
 				</div>
 				<div id="sign_sex">
 					<div id="sex_title">
@@ -144,9 +132,21 @@
 							<strong>성별</strong> <strong class="required">*</strong>
 						</h3>
 					</div>
-					<label for="M">남자</label> <input type="radio" id="M"
-						name="user_sex" value="M"> <label for="F">여자</label> <input
-						type="radio" id="F" name="user_sex" value="F">
+					<div>
+					<c:if test="${gender eq 'M' || gender eq 'male' }">
+						<label for="M">남자</label>
+						<input type="radio" id="M" name="user_sex" value="M" checked>
+						<label for="F">여자</label>
+						<input type="radio" id="F" name="user_sex" value="F">
+					</c:if>
+					<c:if test="${gender eq 'F' || gender eq 'female' }">
+						<label for="M">남자</label>
+						<input type="radio" id="M" name="user_sex" value="M">
+						<label for="F">여자</label>
+						<input type="radio" id="F" name="user_sex" value="F" checked>
+					</c:if>
+					</div>
+			
 				</div>
 				<div class="btn_area">
 					<input type="submit" id="btnJoin" value="인증확인">
@@ -187,15 +187,7 @@
 					$("#newid").focus();
 					return false;
 				}
-				if ($("#signCode").val() == "") {
-					alert("인증코드를 입력해주세요");
-					$("#signCode").focus();
-					return false;
-				}
-				if($("#signCode").val()!=$("#hiddenCode").val()){
-					$("#codeTest").text("인증코드가 맞지않습니다.");
-					return false;
-				}
+			
 				if ($("#newpw").val() == "" || $("#newpw_check").val() == "" || !(regpass.test($("#newpw").val()))|| !(regpass.test($("#newpw_check").val()))) {
 					alert("비밀번호를 확인해주세요.");
 					$("#newpw").focus();
