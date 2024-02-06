@@ -26,11 +26,20 @@
     <c:if test="${login.grade_no!=3}">
     <div class="text-right">
        <a href="${pageContext.request.contextPath}/edit_notice.hm?board_no=${noticeDetail.board_no}"  class="btn btn-danger" >수정</a> 
-       <a href="${pageContext.request.contextPath}/delete_notice.hm?board_no=${noticeDetail.board_no}"  class="btn btn-danger" >삭제</a>    
+       <a href="${pageContext.request.contextPath}/delete_notice.hm?board_no=${noticeDetail.board_no}"  class="btn btn-danger" >삭제</a>  
+       <a href="${pageContext.request.contextPath}/home.hm?user_no=${login.user_no}"  class="btn btn-info" >목록보기</a>   
        <!-- <a href="javascript:window.history.back();"  class="btn btn-info" >목록보기</a>  -->
-       <a href="${pageContext.request.contextPath}/home.hm"  class="btn btn-info" >목록보기</a> 
     </div>	
-    </c:if>					 
+    </c:if>	
+    
+        <c:if test="${login.grade_no==3}">
+    <div class="text-right"> 
+       <a href="${pageContext.request.contextPath}/home.hm?user_no=${login.user_no}"  class="btn btn-info" >목록보기</a>   
+       <!-- <a href="javascript:window.history.back();"  class="btn btn-info" >목록보기</a>  -->
+    </div>	
+    </c:if>				
+    		 
+       
 
   </div>	
 <%@ include  file="../inc/footer.jsp" %>

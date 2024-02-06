@@ -52,7 +52,9 @@
        			 </form>
 			</div>
 			<div id="line1"></div>
+			<script>
 			
+			</script>
 			<div id="home_question_back_back">
 				<div id="home_question_back">
 					<!-- 홈 - 문의사항 -->
@@ -250,7 +252,7 @@
 																href="${pageContext.request.contextPath}/edit_user.hm?board_no=${list.board_no}"
 																class="btn btn-info">수정</a>
 															<a
-																href="${pageContext.request.contextPath}/delete_u.hm?board_no=${list.board_no}"
+																href="${pageContext.request.contextPath}/delete_u.hm?board_no=${list.board_no}&user_no=${login.user_no}"
 																class="btn btn-danger">삭제</a>
 														</c:when>
 														<c:otherwise>답변완료</c:otherwise>
@@ -339,5 +341,4 @@
 
 	</div>
 </div>
-
 <%@ include file="../inc/footer.jsp"%>
