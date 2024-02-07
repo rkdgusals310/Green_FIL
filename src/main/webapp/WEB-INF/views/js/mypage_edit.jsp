@@ -30,32 +30,7 @@
 	background-color: #fff;
 	border-bottom: 0.5px solid gray;
 	height: 20px;
-	border-bottom: 0.5px solid gray;
-	background-color: #fff;
-	border: none;
-	font-size: 20px;
-	outline: none;
-	font-size: 20px;
-	border: none;
-	background-color: #fff;
-	border-bottom: 0.5px solid gray;
-	height: 20px;
 	margin-left: 70px;
-	font-size: 20px;
-	border: none;
-	background-color: #fff;
-	border-bottom: 0.5px solid gray;
-	height: 20px;
-	border-bottom: 0.5px solid gray;
-	background-color: #fff;
-	border: none;
-	font-size: 20px;
-	outline: none;
-	font-size: 20px;
-	border: none;
-	background-color: #fff;
-	border-bottom: 0.5px solid gray;
-	height: 20px;
 }
 
 #editbtn {
@@ -95,10 +70,7 @@ input[type=radio] {
     width: 0px;
     margin-left: 140px;
     }
- #btnfont1 a, #btnfont2 a{
-	color: white !important;
-	font-weight: bold;
-}
+    
 #adminPlus {
 	font-family: 'GmarketSansLight';
 	background-color: aliceblue;
@@ -106,11 +78,11 @@ input[type=radio] {
 	width: 800px;
 	height: 300px;
 	top: 420px;
-	left: 530px;
+	left: 650px;
 	padding: 40px;
 	text-align: center;
 }
-#plusbtns input[type="button"] {
+#plusbtns input[type="button"], input[type="submit"] {
 	border: none;
 	width: 190px;
 	height: 50px;
@@ -124,12 +96,22 @@ input[type=radio] {
 		<h2 style=" font-weight:bold;">프로필 수정</h2>
 
 		<div id="edit">
-			<div id="circle">
-				<img
-					src="${pageContext.request.contextPath}/resources/image/cat_girl.png"
-					alt="프로필 사진" />
-			</div>
-					<p id="imageEdit"><span class="glyphicon glyphicon-camera"></span></p>
+			 <c:choose>
+				<c:when test="${file !=null }">
+				<div id="circle">
+					<img src="${pageContext.request.contextPath}/resources/upload/${file}" alt="프로필 사진" />
+				</div>
+				</c:when>
+				<c:otherwise>
+					<div id="circle">
+						<img src="${pageContext.request.contextPath}/resources/image/snowman.png" alt="프로필 사진" />
+					</div>
+				</c:otherwise>
+			</c:choose>
+			<button type="button" id="imageEdit">
+					<p><span class="glyphicon glyphicon-camera"></span></p>
+			</button>
+					
 		</div>
 
 		<div class="box">
@@ -202,15 +184,20 @@ input[type=radio] {
 		</div>
 	</div>
 		<div id="adminPlus">
-			<div>
-				<h3>이미지 업로드하기 </h3>
-				<p>사진을 올려주세요!</p>
-				<input type="text" name="user_email" value="" id="user_email">
-			</div>
-			<div id="plusbtns">
-				<input type="button" value="취소" class="btncancel"> 
-				<input type="button" value="확인" id="btnok1"> 
-			</div>
+			<form action="upload.js" method="post" enctype="multipart/form-data">
+			<fieldset>
+				<div>
+					<h3>이미지 업로드하기 </h3>
+					<p>사진을 올려주세요!</p>
+					<input type="file" name="file" id="file" class="form-control">
+					<input type="hidden" name="no" value="${myinfo.user_no }">
+				</div>
+				<div id="plusbtns">
+					<input type="button" value="취소" class="btncancel"> 
+					<input type="submit" value="확인" id="btnok1"> 
+				</div>
+			</fieldset>
+			</form>
 		</div>
 	<script>
 		$(function(){
@@ -230,6 +217,10 @@ input[type=radio] {
 						alert("휴대번호를 확인해주세요!");
 						return false
 					}
+			});
+			$("#adminPlus").hide();
+			$("#imageEdit").on("click", function(){
+				$("#adminPlus").toggle();
 			});
 		});
 	</script>

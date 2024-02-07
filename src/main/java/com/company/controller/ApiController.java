@@ -56,10 +56,8 @@ public class ApiController {
 		
 		session=request.getSession();
 		UserDto dto=new UserDto();
-		String profile_image=(String) userinfo.get("profile_image");
 		String email=(String) userinfo.get("email");
 		String id=(String) userinfo.get("id");
-		
 		dto.setUser_email(email);
 		UserDto list=service.loginInfo(dto);
 		if(list!=null) {
@@ -112,7 +110,6 @@ public class ApiController {
 		session=request.getSession();
 		UserDto dto= new UserDto();
 		
-		String profile_image=(String) userinfo.get("profile_image");
 		String id=(String) userinfo.get("id");
 		String email=(String) userinfo.get("email");
 

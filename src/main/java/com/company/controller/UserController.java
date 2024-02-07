@@ -1,5 +1,6 @@
 package com.company.controller;
 
+import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.io.UnsupportedEncodingException;
@@ -7,6 +8,7 @@ import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.UUID;
 
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
@@ -16,6 +18,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.util.FileCopyUtils;
 import org.springframework.web.bind.annotation.CookieValue;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -23,6 +26,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.company.dto.UserDto;
 import com.company.service.UserService;
@@ -96,6 +100,27 @@ public class UserController {
 	public String mypage_edit(Model model, UserDto dto) {
 		service.update_user(dto);
 		return "redirect:/mypage.js?user_no=" + dto.getUser_no();
+	}
+	
+	@PostMapping("/upload.js")
+	
+	public String upload_image(int no, MultipartFile file, HttpServletRequest request, Model model, HttpSession session) throws IOException {
+		System.out.println("@@@@이동");
+		UUID uid=UUID.randomUUID();
+		String save=uid.toString()+"_"+file.getOriginalFilename();
+		String rootPath=request.getSession().getServletContext().getRealPath("/");
+		
+		rootPath+="resources\\upload";
+		System.out.println(rootPath);
+		File target = new File(rootPath, save);
+		FileCopyUtils.copy(file.getBytes(), target);
+		
+		session=request.getSession();
+		session.setAttribute("file", save);
+		
+		System.out.println("save@@@@"+save);
+		System.out.println(model);
+		return "redirect:/mypage_edit.js?user_no="+no;
 	}
 
 	@GetMapping("/sign_agree.js")

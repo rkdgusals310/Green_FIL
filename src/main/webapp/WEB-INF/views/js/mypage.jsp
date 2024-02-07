@@ -65,11 +65,18 @@
 		<h2 style=" font-weight:bold;">프로필 수정</h2>
 
 		<div id="edit">
-			<div id="circle">
-				<img
-					src="${pageContext.request.contextPath}/resources/image/cat_girl.png"
-					alt="프로필 사진" />
-			</div>
+			 <c:choose>
+				<c:when test="${file !=null }">
+				<div id="circle">
+					<img src="${pageContext.request.contextPath}/resources/upload/${file}" alt="프로필 사진" />
+				</div>
+				</c:when>
+			<c:otherwise>
+				<div id="circle">
+					<img src="${pageContext.request.contextPath}/resources/image/snowman.png" alt="프로필 사진" />
+				</div>
+			</c:otherwise>
+			</c:choose>
 		</div>
 
 		<div class="box">

@@ -95,10 +95,10 @@ main {
 }
 */
 #circle img {
-    width: 90%; /* 부모 요소의 크기에 맞게 이미지 크기 조절 */
-    height: auto; /* 가로 비율 유지하면서 세로 비율 조절 */
-    display: block; /* 이미지를 블록 요소로 만들어 가로 중앙 정렬 */
-    margin: 1.25rem auto; /* 수평 중앙 정렬 */
+    width: 100%;
+    height: 100%;
+    display: block;
+    margin: auto;
     
 }
 
