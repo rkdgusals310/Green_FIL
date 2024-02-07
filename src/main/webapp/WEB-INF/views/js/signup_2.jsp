@@ -108,7 +108,7 @@
 				</h3>
 				<span class="box int_name"> <input type="text" id="newname"
 					name="user_name" class="field" value="${param.user_name }"
-					placeholder="">
+					placeholder="한글을 입력해주세요">
 				</span> <span class="error_next_box"></span>
 			</div>
 

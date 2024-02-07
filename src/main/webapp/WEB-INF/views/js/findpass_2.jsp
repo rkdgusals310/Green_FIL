@@ -38,8 +38,7 @@
         </div>
 
         <div>
-           <!-- <p style="font-size: 25px; text-align: center; margin-top: 100px;">비밀번호가 전송되었습니다.</p> -->
-            <input type="text" name="findpass" value="${pass.user_pass }" readonly style="font-size: 20px ;border:none; background-color: #fff; border-bottom: 0.5px solid gray ; margin: 10px 20px 10px 20px; height: 50px;">
+           <p style="font-size: 25px; text-align: center; margin-top: 100px;">비밀번호가 전송되었습니다.</p>
         </div>
         <div>
             <input type="button" class="btn btn-lg" value="처음으로" style="width: 400px; margin: 100px 0 30px 0; font-weight: bold;">

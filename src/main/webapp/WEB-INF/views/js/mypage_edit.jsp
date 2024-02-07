@@ -89,6 +89,35 @@ input[type=radio] {
     font-size: 10px;
     text-align: right;
 }
+#imageEdit{
+    font-size: 40px;
+    height: 0px;
+    width: 0px;
+    margin-left: 140px;
+    }
+ #btnfont1 a, #btnfont2 a{
+	color: white !important;
+	font-weight: bold;
+}
+#adminPlus {
+	font-family: 'GmarketSansLight';
+	background-color: aliceblue;
+	position: absolute;
+	width: 800px;
+	height: 300px;
+	top: 420px;
+	left: 530px;
+	padding: 40px;
+	text-align: center;
+}
+#plusbtns input[type="button"] {
+	border: none;
+	width: 190px;
+	height: 50px;
+	font-size: 20px;
+	font-weight: bold;
+	margin: 10px 20px;
+}
 </style>
 <main style="font-weight:bold">
 	<div id="wrapper" style="margin-left:50px;">
@@ -100,6 +129,7 @@ input[type=radio] {
 					src="${pageContext.request.contextPath}/resources/image/cat_girl.png"
 					alt="프로필 사진" />
 			</div>
+					<p id="imageEdit"><span class="glyphicon glyphicon-camera"></span></p>
 		</div>
 
 		<div class="box">
@@ -124,11 +154,11 @@ input[type=radio] {
 			</div>
 			<div class="title">
 			<label for="user_pass">비밀번호<strong class="required">*</strong></label>
-			<input type="password" id="user_pass" name="user_pass" style="margin-left:57px" placeholder="비밀번호는 영어와 숫자를 포함해주세요">
+			<input type="password" id="user_pass" name="user_pass" style="margin-left:57px" placeholder="영어와 숫자를 포함해주세요">
 			</div>
 			<div class="title">
 			<label for="user_passcheck">비밀번호 재확인<strong class="required">*</strong></label>
-			<input type="password" id="user_passcheck" name="user_passcheck" style="margin-left:12px" placeholder="비밀번호는 영어와 숫자를 포함해주세요">
+			<input type="password" id="user_passcheck" name="user_passcheck" style="margin-left:12px" placeholder="영어와 숫자를 포함해주세요">
 			<p id="pwcheck"></p>
 			</div>
 			<c:choose>
@@ -171,6 +201,17 @@ input[type=radio] {
 			</form>
 		</div>
 	</div>
+		<div id="adminPlus">
+			<div>
+				<h3>이미지 업로드하기 </h3>
+				<p>사진을 올려주세요!</p>
+				<input type="text" name="user_email" value="" id="user_email">
+			</div>
+			<div id="plusbtns">
+				<input type="button" value="취소" class="btncancel"> 
+				<input type="button" value="확인" id="btnok1"> 
+			</div>
+		</div>
 	<script>
 		$(function(){
 			let regpass = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]*$/;
