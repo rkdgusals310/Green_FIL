@@ -1,74 +1,22 @@
-package com.company.using002;
+package com.company.api;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
-import java.io.UnsupportedEncodingException;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLEncoder;
+import java.util.HashMap;
+import java.util.Map;
 
-import org.junit.Ignore;
-import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.ApplicationContext;
-import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.springframework.stereotype.Component;
 
-import com.company.api.Random;
-import com.company.dto.UserDto;
-import com.company.dto.UserVoDto;
-import com.company.service.UserService;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
 
-
-@RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(locations = "file:src/main/webapp/WEB-INF/spring/**/root-context.xml")
-public class Test001 {
-
-	@Autowired
-	ApplicationContext context;
-
-	@Autowired
-	UserService service;
-
-	@Autowired
-	
-	@Test 
-	public void test0() {
-		System.out.println(context);
-	}
-
-	@Test  @Ignore
-	public void test1() {
-		   UserVoDto vodto = new UserVoDto();
-		   vodto.setUser_no(1000);
-		   vodto.setGroup_no(1);
-	        System.out.println("!!!!!!!!!!!"+vodto.getUser_no());
-	        System.out.println("!!!!!!!!!!!"+vodto.getGroup_no());
-	        System.out.println("@@@@@@"+service.contentList(vodto));
-	}
-	
-	@Test @Ignore
-	public void test2() {
-		//System.out.println(service.select_admin());
-		//System.out.println(service.readAll());
-		UserDto dto=new UserDto();
-		//dto.setUser_email("test22@naver.com");
-		//System.out.println(service.admin_plus(dto));
-		dto.setUser_email("admin@gmail.com");
-		dto.setUser_pass("a456");
+@Component
+public class SeoulApi {
+	public Map<String, Object> historyTour() throws Exception{
 		
-	}
-	 
-	@Test @Ignore
-	public void test3() {
-		Random random= new Random();
-		
-		System.out.println(random.random_code());
-	}
-	
-	@Test
-	public void test4() throws Exception {
 		StringBuilder urlBuilder = new StringBuilder("http://openapi.seoul.go.kr:8088"); /*URL*/
 		urlBuilder.append("/" +  URLEncoder.encode("51524b696573657534304b4f424c58","UTF-8") ); /*인증키 (sample사용시에는 호출시 제한됩니다.)*/
 		urlBuilder.append("/" +  URLEncoder.encode("json","UTF-8") ); /*요청파일타입 (xml,xmlf,xls,json) */
@@ -100,8 +48,23 @@ public class Test001 {
 		}
 		rd.close();
 		conn.disconnect();
-		System.out.println(sb.toString());
-	}
+		String infoResult=sb.toString();
+		System.out.println("@@@@@@@@"+ infoResult);
 		
-	
+		JsonParser parser=new JsonParser();
+		JsonObject job=(JsonObject) parser.parse(infoResult);
+		JsonObject read=(JsonObject) job.get("row");
+		
+		String ITRST_BRNCH_NO=read.get("ITRST_BRNCH_NO").getAsString();
+		String KORN_TTL=read.get("KORN_TTL").getAsString();
+		String KORN_CONTS=read.get("KORN_CONTS").getAsString();
+		
+		Map<String, Object> result=new HashMap<>();
+		
+		result.put("ITRST_BRNCH_NO", ITRST_BRNCH_NO);
+		result.put("KORN_TTL", KORN_TTL);
+		result.put("KORN_CONTS", KORN_CONTS);
+		return result;
+		
+	}
 }
