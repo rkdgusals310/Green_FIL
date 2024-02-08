@@ -165,7 +165,7 @@
 				$("#codeTest").text("인증코드가 전송되었습니다.")
 				
 				$.ajax({
-					url:"mail.js",
+					url:"mail_user.js",
 					type:"POST",
 					dataType:"text",
 					data:{"user_email":$("#newid").val()},

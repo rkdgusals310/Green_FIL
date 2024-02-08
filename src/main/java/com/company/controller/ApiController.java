@@ -33,12 +33,37 @@ public class ApiController {
 	@Autowired Kakao_login kakao;
 	@Autowired Naver_login naver;
 	@Autowired UserService service;
-	@PostMapping("mail.js")
+	
+	@PostMapping("mail_user.js")
 	@ResponseBody
-	public String mail(UserDto dto) {
+	public String mail_user(UserDto dto) {
 		Random random=new Random(); 
 		String randomCode=random.random_code();
-		mail.sendMail(dto, randomCode);
+		String sub="[날씨의 일기] 회원가입 인증 코드입니다.";
+		String content="인증코드 : ";
+		mail.sendMail(dto, randomCode, sub, content);
+		return randomCode;
+	}
+	
+	@PostMapping("mail_pass.js")
+	@ResponseBody
+	public String mail_pass(UserDto dto) {
+		Random random=new Random(); 
+		String randomCode=random.random_code();
+		String sub="";
+		String content="";
+		mail.sendMail(dto, randomCode, sub, content);
+		return randomCode;
+	}
+	
+	@PostMapping("mail_admin.js")
+	@ResponseBody
+	public String mail_admin(UserDto dto) {
+		Random random=new Random(); 
+		String randomCode=random.random_code();
+		String sub="";
+		String content="";
+		mail.sendMail(dto, randomCode, sub, content);
 		return randomCode;
 	}
 	

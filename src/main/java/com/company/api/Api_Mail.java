@@ -21,7 +21,7 @@ import com.company.dto.UserDto;
 public class Api_Mail {
 	private String subject, content;
 	
-	public void sendMail(UserDto dto, String random) {
+	public void sendMail(UserDto dto, String random, String sub, String content) {
 		
 		
 		String randomCode=random;
@@ -29,8 +29,7 @@ public class Api_Mail {
 		String host="smtp.naver.com";
 		String user="testdump123@naver.com";
 		String password="Ljs159753";
-		String subject="Feel In Like 인증코드 입니다";
-		
+		String subject=sub;
 		String to=dto.getUser_email();
 		Properties props= new Properties();
 		props.put("mail.smtp.host", host);
@@ -54,7 +53,7 @@ public class Api_Mail {
 			message.addRecipient(Message.RecipientType.TO, new InternetAddress(to));
 			
 			message.setSubject(subject);
-			message.setContent(""+"<div>"+"<h3>인증코드 메일입니다</h3>"+"<p>"+randomCode+"</p>"+"</div>", "text/html; charset=euc-kr");
+			message.setContent(""+"<div>"+"<h3>인증코드 메일입니다</h3>"+"<p>"+content+"</p>"+"<p>"+randomCode+"</p>"+"</div>", "text/html; charset=euc-kr");
 			Transport.send(message);
 			System.out.println("@@MAIL SUCCESSSS@@");
 		}catch(AddressException e) {
