@@ -55,7 +55,7 @@
 			</div>
 
 			<ul class="navbar_menu" style="margin-bottom: -5px">
-				<li class="highlight"><a href="#">오늘의 일기</a></li>
+				<li class="highlight"><a href="calendar.khm">오늘의 일기</a></li>
 				<li class="active">|</li>
 				<li class="highlight"><a href="home.hm?user_no=${login.user_no}">고객 문의</a></li>
 				<!-- <li class="active">|</li>
@@ -70,7 +70,7 @@
 						<ul class="dropdown-menu" style="left: -110px; color: black">
 							<li><a href="mypage.js?user_no=${login.user_no }">내 정보</a></li>
 							<li><a href="#">내 저장 콘텐츠</a></li>
-							<li><a href="home.hm">내 문의 내역</a></li>
+							<li><a href="home.hm?user_no=${login.user_no}">내 문의 내역</a></li>
 							<li><a href="logout.js">로그아웃</a></li>
 						</ul>
 					</div>
