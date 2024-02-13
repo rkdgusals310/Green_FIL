@@ -123,12 +123,16 @@ public class Test001 {
 			String KORN_CONTS=read_one.get("KORN_CONTS").getAsString();
 			Map<String, Object> map=new HashMap<>();
 						
-			map.put("ITRST_BRNCH_NO", ITRST_BRNCH_NO);
-			map.put("KORN_TTL", KORN_TTL);
-			map.put("KORN_CONTS", KORN_CONTS);
+			map.put("No", ITRST_BRNCH_NO);
+			map.put("Title", KORN_TTL);
+			map.put("Content", KORN_CONTS);
 			result.add(map);
 			}
-		System.out.println("last@@@@ : "+result.get(0).get("ITRST_BRNCH_NO"));
+			Map<String, Object> seoulInfo = new HashMap<>();
+			seoulInfo.put("seoulInfo", result);
+			result.get(0).get("Title");
+			seoulInfo.get("seoulInfo");
+			System.out.println(result.get(0).get("Title"));
 	}
 		
 	

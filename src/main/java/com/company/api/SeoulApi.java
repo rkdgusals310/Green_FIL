@@ -26,7 +26,7 @@ public class SeoulApi {
 		urlBuilder.append("/" +  URLEncoder.encode("json","UTF-8") ); /*요청파일타입 (xml,xmlf,xls,json) */
 		urlBuilder.append("/" + URLEncoder.encode("tbHanyangPoi","UTF-8")); /*서비스명 (대소문자 구분 필수입니다.)*/
 		urlBuilder.append("/" + URLEncoder.encode("1","UTF-8")); /*요청시작위치 (sample인증키 사용시 5이내 숫자)*/
-		urlBuilder.append("/" + URLEncoder.encode("3","UTF-8")); /*요청종료위치(sample인증키 사용시 5이상 숫자 선택 안 됨)*/
+		urlBuilder.append("/" + URLEncoder.encode("64","UTF-8")); /*요청종료위치(sample인증키 사용시 5이상 숫자 선택 안 됨)*/
 		// 상위 5개는 필수적으로 순서바꾸지 않고 호출해야 합니다.
 		
 		// 서비스별 추가 요청 인자이며 자세한 내용은 각 서비스별 '요청인자'부분에 자세히 나와 있습니다.
@@ -67,12 +67,13 @@ public class SeoulApi {
 			String KORN_CONTS=read_one.get("KORN_CONTS").getAsString();
 			Map<String, Object> map=new HashMap<>();
 						
-			map.put("ITRST_BRNCH_NO", ITRST_BRNCH_NO);
-			map.put("KORN_TTL", KORN_TTL);
-			map.put("KORN_CONTS", KORN_CONTS);
+			map.put("No", ITRST_BRNCH_NO);
+			map.put("Title", KORN_TTL);
+			map.put("Content", KORN_CONTS);
 			result.add(map);
 			}
-		System.out.println("last@@@@ : "+result.get(0).get("ITRST_BRNCH_NO"));
-		return (Map<String, Object>) result;
+			Map<String, Object> seoulInfo = new HashMap<>();
+			seoulInfo.put("seoulInfo", result);
+		return seoulInfo;
 	}
 }

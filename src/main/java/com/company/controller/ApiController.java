@@ -186,9 +186,18 @@ public class ApiController {
 	
 	@GetMapping("historyTour.js")
 	public String Tour_Api() throws Exception {
-		seoul.historyTour();
-		
-		
+		Map<String, Object> seoulInfo=seoul.historyTour();
+		List<Map<String, Object>> seoulInfoList= (List<Map<String, Object>>) seoulInfo.get("seoulInfo");
+		int index=0;
+		for(Map<String, Object> map: seoulInfoList) {
+			String No = map.get("No").toString();
+			String Title = map.get("Title").toString();
+			String Content = map.get("Content").toString();
+			
+			System.out.println(No);
+		}
+		System.out.println(index);
+		System.out.println();
 		return "redirect:/home.js";
 	}
 	
