@@ -33,10 +33,10 @@
 						method="POST" id="email">
 						<fieldset>
 							<div>
-								<label for="macro_no">답변</label> <select id="macro_no"
-									name="macro_no">
+								<label for="macro_no">답변</label> 
+								<select id="macro_no" name="macro_no">
 									<c:forEach var="i" items="${answer}">
-										<option class="macro_no" value="${i.macro_no}">${i.macro_content}</option>
+										<option id="m1" value="${i.macro_no}">${i.macro_content}</option>
 									</c:forEach>
 								</select>
 

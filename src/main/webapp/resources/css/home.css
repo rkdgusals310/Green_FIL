@@ -111,14 +111,14 @@ p#btn_w{
 	margin-left: 320px;
 }
 
-#macro_no{
-	width:510px;
- 	/* width:510px !important;  */
+#macro_no,#m1{
+	max-width:510px;
 	height: 40px;
     font-size: 16px;
-    box-sizing: border-box;
--moz-box-sizing: border-box;
--webkit-box-sizing: border-box;
+ 	/* width:510px !important;  */
+ /*    box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	-webkit-box-sizing: border-box; */
     /*  max-width: 510px;
     min-width: 510px;  */
 }
