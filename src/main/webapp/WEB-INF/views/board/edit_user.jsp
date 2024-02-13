@@ -4,18 +4,10 @@
 
 
 <div class="container">
-  <h2>Feel In Like</h2>
-
-  <ul class="nav nav-tabs">
-    <li class="active tab_write"><a  href="home.html">홈</a></li>
-    <li class="tab_write"><a  href="home.html#menu1">공지사항</a></li>
-    <li class="tab_write"><a  href="home.html#menu2">내 문의내역</a></li>
-  </ul>
-
-  <div> <!-- 글작성 start -->
+  <div class="write_notice"> <!-- 글작성 start -->
     <form action="${pageContext.request.contextPath}/edit_user.hm?board_no=${list.board_no}&user_no=${login.user_no}" method="post">
       <fieldset>
-        <legend>게시글을 수정해주세요!</legend>
+        <legend>문의사항을 수정해주세요!</legend>
 
         <div>
           <label for="board_title">제목 </label><a> 30글자 내외로 입력가능합니다</a> <br>

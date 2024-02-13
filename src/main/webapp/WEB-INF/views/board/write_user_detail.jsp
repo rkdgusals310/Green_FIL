@@ -3,15 +3,8 @@
 
 
 <div class="container">
-  <h2>Feel In Like</h2>
-
-  <ul class="nav nav-tabs">
-    <li class="active tab_write"><a  href="home.html">홈</a></li>
-    <li class="tab_write"><a  href="home.html#menu1">공지사항</a></li>
-    <li class="tab_write"><a  href="home.html#menu2">내 문의내역</a></li>
-  </ul>
-
-  <div class="container"  style="margin-top:5%; min-height:500px">
+  
+  <div class="write_notice">
     <h3>게시글</h3> 	
     <p>${queDetail.user_name}님의 게시글입니다</p>				
     			

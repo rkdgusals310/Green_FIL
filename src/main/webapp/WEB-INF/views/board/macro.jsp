@@ -2,12 +2,12 @@
 <%@ include  file="../inc/login_header.jsp" %>
 
 	<div>
-		<h3 class="myhidden">공지사항</h3>
+		<h3 class="myhidden">메크로</h3>
 		<div id="home_question_back_back">
 			<div id="home_question_back">
 				<!-- 홈 - 공지사항 -->
 				<div id="overflow_table">
-					<table style="margin: auto;margin-top: 100px;width: 1300px;max-width: 100%;board-bottom: 1px solid black">
+					<table  class="table table-border" style="margin: auto;margin-top: 100px;width: 1300px;max-width: 100%;board-bottom: 1px solid black">
 						<thead>
 							<tr id="home_question">
 								<th >번호</th>

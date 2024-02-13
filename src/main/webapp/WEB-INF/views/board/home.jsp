@@ -38,7 +38,7 @@
 					</tbody>
 				</table>
 			</div>
-			<div>
+			<div id="search">
 			
 					<fieldset class="srch">
 						<select class="search-option" name="option" id="search-option">

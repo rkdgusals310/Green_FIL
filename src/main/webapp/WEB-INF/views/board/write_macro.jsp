@@ -4,18 +4,11 @@
 
 
 <div class="container">
-  <h2>Feel In Like</h2>
 
-  <ul class="nav nav-tabs">
-    <li class="active tab_write"><a  href="home.html">홈</a></li>
-    <li class="tab_write"><a  href="home.html#menu1">공지사항</a></li>
-    <li class="tab_write"><a  href="home.html#menu2">내 문의내역</a></li>
-  </ul>
-
-  <div> <!-- 글작성 start -->
+  <div class="write_notice"> <!-- 글작성 start -->
     <form action="${pageContext.request.contextPath}/write_macro.hm" method="post">
       <fieldset>
-        <legend>게시글을 작성해주세요!</legend>
+        <legend>추가할 매크로 답변을 입력해주세요!</legend>
 
         <div>
           <label for="macro_no">번호 </label><br>

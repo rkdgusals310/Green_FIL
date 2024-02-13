@@ -1,5 +1,18 @@
 @charset "UTF-8";
 
+
+#search{
+    margin-bottom: -20px;
+    margin-top: 10px;
+    padding-left: 236px;}
+#search #search_btn{
+    background-color: #00A3FF;
+    height: 44px;
+    width: 70px;
+    font-size: 15px;
+    font-weight: bolder;
+    color: white;}
+
 .home_body{
 	margin-top: 90px;
 }
@@ -96,4 +109,20 @@ p#btn_w{
 #paging_user{
 	
 	margin-left: 320px;
+}
+
+#macro_no{
+	width:510px;
+ 	/* width:510px !important;  */
+	height: 40px;
+    font-size: 16px;
+    box-sizing: border-box;
+-moz-box-sizing: border-box;
+-webkit-box-sizing: border-box;
+    /*  max-width: 510px;
+    min-width: 510px;  */
+}
+
+.write_notice{
+	    margin-top: 90px;
 }

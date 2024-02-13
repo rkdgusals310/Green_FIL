@@ -5,13 +5,13 @@
 
 
 <div class="container">
-	<div>
+	<div class="write_notice">
 			
 		<!-- 글작성 start -->
 		<form action="${pageContext.request.contextPath}/write_notice_end.hm?board_no=${notice_write.board_no}"
 			method="post">
 			<fieldset>
-				<legend>게시글을 수정해주세요!</legend>
+				<legend>공지사항의 공개기간을 지정해주세요</legend>
 
 				<div>
 					<label >제목 </label><a> 30글자 내외로 입력가능합니다</a> <br>

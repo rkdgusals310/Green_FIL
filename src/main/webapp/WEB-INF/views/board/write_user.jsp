@@ -8,7 +8,7 @@
     <form action="${pageContext.request.contextPath}/write_user.hm?user_no=${login.user_no}" method="post"><!-- ${login.user_no} -->
 
       <fieldset>
-        <legend>게시글을 작성해주세요!</legend>
+        <legend>문의사항을 작성해주세요!</legend>
 
         <div>
           <label for="board_title">제목 </label><a> 30글자 내외로 입력가능합니다</a> <br>

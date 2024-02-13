@@ -15,7 +15,7 @@
   <div> <!-- 글작성 start -->
     <form action="${pageContext.request.contextPath}/edit_macro.hm?macro_no=${macroDetail.macro_no}" method="post">
       <fieldset>
-        <legend>게시글을 수정해주세요!</legend>
+        <legend>매크로 답변을 수정해주세요</legend>
 
         <div>
           <label for="macro_no">번호 </label><br>
