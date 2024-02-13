@@ -34,7 +34,7 @@
 						<fieldset>
 							<div>
 								<label for="macro_no">답변</label> 
-								<select id="macro_no" name="macro_no">
+								<select id="macro_no" name="macro_no" size="1">
 									<c:forEach var="i" items="${answer}">
 										<option id="m1" value="${i.macro_no}">${i.macro_content}</option>
 									</c:forEach>
