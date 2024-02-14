@@ -1,8 +1,6 @@
 package com.company.api;
-//sdsdsdsdsdsdsdsd
+
 import java.util.Properties;
-
-
 import javax.mail.Authenticator;
 import javax.mail.Message;
 import javax.mail.MessagingException;
@@ -19,12 +17,8 @@ import com.company.dto.UserDto;
 
 @Component
 public class Api_Mail {
-	private String subject, content;
 	
-	public void sendMail(UserDto dto, String random, String sub, String content) {
-		
-		
-		String randomCode=random;
+public void sendMail(UserDto dto, String sub, String content) {
 		
 		String host="smtp.naver.com";
 		String user="testdump123@naver.com";
@@ -51,9 +45,12 @@ public class Api_Mail {
 		try {
 			message.setFrom(new InternetAddress(user));
 			message.addRecipient(Message.RecipientType.TO, new InternetAddress(to));
-			
 			message.setSubject(subject);
-			message.setContent(""+"<div>"+"<h3>인증코드 메일입니다</h3>"+"<p>"+content+"</p>"+"<p>"+randomCode+"</p>"+"</div>", "text/html; charset=euc-kr");
+			message.setContent(""+"<div style='font-size: 20px;"+ "margin-bottom: 40px;'>"
+			+"<h3>"+subject+"</h3>"
+			+"<p>"+content+"</p>"   
+			+"<p>감사합니다.</p>"+"</div>"
+			+"<img src='https://ifh.cc/g/rKBfws.png' style='background-color: #f4f4fb;'>", "text/html; charset=euc-kr");
 			Transport.send(message);
 			System.out.println("@@MAIL SUCCESSSS@@");
 		}catch(AddressException e) {
@@ -63,3 +60,4 @@ public class Api_Mail {
 		}
 	}
 }
+

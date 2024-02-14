@@ -20,7 +20,7 @@
 
 </head>
 <body>
-    <div style="background-color:white ;width: 500px; margin: 20px; padding: 20px; height: 1000px; margin:auto; padding: 50px;">
+     <div style="background-color:white ;width: 500px; margin: 20px; padding: 20px; height: 1000px; margin:auto; padding: 50px;">
         <div style="font-size: 30px;">
             <p><a href="login.js">X</a></p>
         </div>
@@ -32,18 +32,18 @@
 		</div>
         <div>
             <h4 style="font-weight: bold;">비밀번호 찾기</h4>
-            <p>아이디 정보와 내정보 > 연락처에 등록된 아이디가 일치해야만 인증번호를 받으실 수 있습니다.</p>
+            <p>이름과 내정보 > 연락처에 등록된 아이디가 일치해야만 인증번호를 받으실 수 있습니다.</p>
 
         </div>
         <div>
-            <form action="findpass_2.js" method="post">
+            <form action="findpass_2.js" method="post" id="findPass">
                 <fieldset>
                     <legend  style="display: none;">비밀번호 찾기</legend>
                     <div>
-                        <input type="text" name="user_name" placeholder="이름" style="font-size: 20px ;border:none; background-color: #fff; border-bottom: 0.5px solid gray ; margin: 10px 20px 10px 20px; height: 50px;">
+                        <input type="text" id="user_name" name="user_name" placeholder="이름" style="font-size: 20px ;border:none; background-color: #fff; border-bottom: 0.5px solid gray ; margin: 10px 20px 10px 20px; height: 50px;">
                     </div>
                     <div>
-                        <input type="text" name="user_email" placeholder="등록된 아이디" style="font-size: 20px ;border:none; background-color: #fff; border-bottom: 0.5px solid gray ; margin: 10px 20px 10px 20px; height: 50px;">
+                        <input type="text" id="user_email" name="user_email" placeholder="등록된 아이디" style="font-size: 20px ;border:none; background-color: #fff; border-bottom: 0.5px solid gray ; margin: 10px 20px 10px 20px; height: 50px;">
                     </div>
                     <div>
                         <input type="submit" class="btn btn-lg" value="다음 단계" style="width: 400px; margin: 100px 0 30px 0;">
@@ -51,10 +51,29 @@
                 </fieldset>
             </form>
         </div>
+         <script>
+
+		$("#findPass").on("submit", function() {
+			
+			if ($("#user_name").val() == "") {
+				alert("이름을 확인해주세요.");
+				$("#user_name").focus();
+				return false;
+			}
+			if ($("#user_email").val() == "") {
+				alert("이메일을 확인해주세요.");
+				$("#user_email").focus();
+				return false;
+			}
+		}
+        
+        </script>
+        
         <div>
             <a href="findid.js">아이디 찾기</a>
         </div>
     </div>
+
 
 
 </body>

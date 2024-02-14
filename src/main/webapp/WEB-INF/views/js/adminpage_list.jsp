@@ -198,7 +198,8 @@
 <div id="adminPlus_next">
 	<div>
 		<h3>관리자 권한 주기 </h3>
-		<input type="text" value="" placeholder="인증코드">
+		<input type="text" value="" placeholder="인증코드" id="admin_code">
+		<input type="hidden" value="" id="hiddenCode">
 	</div>
 	<div id="plusbtns">
 		<input type="button" value="취소" class="btncancel"> 
@@ -209,11 +210,29 @@
 		$(function(){
 			$("#btnok1").on("click", function(){
 				alert("인증코드가 전송되었습니다.");
-						
+				$.ajax({
+					url:"mail_admin.js",
+					type:"POST",
+					dataType:"text",
+					data:{"user_email":$("#user_email").val()},
+					error:function(xhr,status,msg){
+						alert(status+"/"+msg);
+					},
+					success:function(text){
+						console.log(text);
+						$("#hiddenCode").val(text);
+					}
+				});//ajax
 			});
 			
 			$("#btnok2").on("click", function(){
+				if($("#admin_code").val()!=$("#hiddenCode").val()){
+					$("#codeTest").text("인증코드가 맞지않습니다.");
+					return false;
+				}else{
 				location.href="admin_plus.js?user_email="+$("#user_email").val();
+				}
+					
 			});
 		});
 	

@@ -74,6 +74,7 @@ public class SeoulApi {
 			}
 			Map<String, Object> seoulInfo = new HashMap<>();
 			seoulInfo.put("seoulInfo", result);
+			
 		return seoulInfo;
 	}
 }

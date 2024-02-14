@@ -20,7 +20,7 @@
 
 </head>
 <body >
-    <div style="background-color:white ;width: 500px; margin: 20px; padding: 20px; height: 1000px; margin:auto; padding: 50px;">
+     <div style="background-color:white ;width: 500px; margin: 20px; padding: 20px; height: 1000px; margin:auto; padding: 50px;">
         <div style="font-size: 30px;">
             <p><a href="login.js">X</a></p>
         </div>
@@ -33,7 +33,7 @@
         
         <div>
             <h4 style="font-weight: bold;">비밀번호 찾기</h4>
-            <p>아이디 정보와 내정보 > 연락처에 등록된 아이디가 일치해야만 인증번호를 받으실 수 있습니다.</p>
+            <p>이름과 내정보 > 연락처에 등록된 아이디가 일치해야만 인증번호를 받으실 수 있습니다.</p>
 
         </div>
 
@@ -54,6 +54,7 @@
     		});
     	});
     </script>
+
 
 </body>
 </html>

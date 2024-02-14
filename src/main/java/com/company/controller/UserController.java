@@ -28,6 +28,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.company.api.Api_Mail;
 import com.company.dto.UserDto;
 import com.company.service.UserService;
 
@@ -36,7 +37,10 @@ public class UserController {
 
 	@Autowired
 	UserService service;
-
+	
+	@Autowired
+	Api_Mail mail;
+	
 	@GetMapping("/home.js")
 	public String home() {
 		return "start";
@@ -153,15 +157,6 @@ public class UserController {
 		return "adminpage_list";
 	}
 
-	/*
-	 * @RequestMapping(value = "ex_adminpage_list.js", // produces =
-	 * "application/json", headers = { "Content-type=application/json" }, method = {
-	 * RequestMethod.GET, RequestMethod.POST })
-	 * 
-	 * @ResponseBody public Map<String, Object> readAll() { Map<String, Object>
-	 * result = new HashMap<>(); result.put("result", service.select_admin());
-	 * return result; }
-	 */
 
 	@GetMapping("admin_plus.js")
 	
@@ -171,25 +166,29 @@ public class UserController {
 		return "redirect:/adminpage_list.js";
 	}
 
-	@RequestMapping(value = "ex_admin_plus.js",
-			headers = { "Content-type=application/json" }, method = { RequestMethod.GET, RequestMethod.POST })
-	@ResponseBody
-	public Map<String, Object> ex_admin_plus(String user_email) {
-		// System.out.println("............" + user_email);
-		UserDto dto = new UserDto();
-		dto.setUser_email(user_email);
-		// System.out.println("............" + dto);
-		Map<String, Object> result = new HashMap<>();
-		int process = service.admin_plus(dto);
-		result.put("result", service.admin_plus(dto));
-
-		System.out.println("............process >>>>>>>>>>" + process);
-		return result;
-	}
+	/*
+	 * @RequestMapping(value = "ex_admin_plus.js", headers = {
+	 * "Content-type=application/json" }, method = { RequestMethod.GET,
+	 * RequestMethod.POST })
+	 * 
+	 * @ResponseBody public Map<String, Object> ex_admin_plus(String user_email) {
+	 * // System.out.println("............" + user_email); UserDto dto = new
+	 * UserDto(); dto.setUser_email(user_email); //
+	 * System.out.println("............" + dto); Map<String, Object> result = new
+	 * HashMap<>(); int process = service.admin_plus(dto); result.put("result",
+	 * service.admin_plus(dto));
+	 * 
+	 * System.out.println("............process >>>>>>>>>>" + process); return
+	 * result; }
+	 */
 
 	@GetMapping("admin_delete.js")
 	public String admin_delete(UserDto dto) {
-		service.admin_delete(dto);
+		System.out.println(dto.getGrade_no());
+		if(dto.getUser_no()!=1000) {
+			service.admin_delete(dto);
+			return "redirect:/adminpage_list.js";
+		};
 		return "redirect:/adminpage_list.js";
 	}
 
@@ -213,7 +212,11 @@ public class UserController {
 
 	@PostMapping("/findpass_2.js")
 	public String findpass(UserDto dto, Model model) {
-		model.addAttribute("pass", service.find_pass(dto));
+		UserDto udto=service.find_pass(dto);
+		String pass=udto.getUser_pass();
+		String sub="[날씨의 일기] 회원님의 비밀번호입니다.";
+		String content="비밀번호 : "+pass;
+		mail.sendMail(dto, sub, content);
 		return "findpass_2";
 	}
 

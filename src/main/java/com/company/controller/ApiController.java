@@ -1,7 +1,5 @@
 package com.company.controller;
 
-import java.io.PrintWriter;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -23,7 +21,9 @@ import com.company.api.Kakao_login;
 import com.company.api.Naver_login;
 import com.company.api.Random;
 import com.company.api.SeoulApi;
+import com.company.dto.MainContentDto;
 import com.company.dto.UserDto;
+import com.company.service.MainService;
 import com.company.service.UserService;
 
 import lombok.extern.log4j.Log4j;
@@ -35,6 +35,7 @@ public class ApiController {
 	@Autowired Kakao_login kakao;
 	@Autowired Naver_login naver;
 	@Autowired UserService service;
+	@Autowired MainService mainService;
 	@Autowired SeoulApi seoul;
 	
 	@PostMapping("mail_user.js")
@@ -43,19 +44,8 @@ public class ApiController {
 		Random random=new Random(); 
 		String randomCode=random.random_code();
 		String sub="[날씨의 일기] 회원가입 인증 코드입니다.";
-		String content="인증코드 : ";
-		mail.sendMail(dto, randomCode, sub, content);
-		return randomCode;
-	}
-	
-	@PostMapping("mail_pass.js")
-	@ResponseBody
-	public String mail_pass(UserDto dto) {
-		Random random=new Random(); 
-		String randomCode=random.random_code();
-		String sub="";
-		String content="";
-		mail.sendMail(dto, randomCode, sub, content);
+		String content="인증코드 : "+randomCode;
+		mail.sendMail(dto, sub, content);
 		return randomCode;
 	}
 	
@@ -64,9 +54,9 @@ public class ApiController {
 	public String mail_admin(UserDto dto) {
 		Random random=new Random(); 
 		String randomCode=random.random_code();
-		String sub="";
-		String content="";
-		mail.sendMail(dto, randomCode, sub, content);
+		String sub="[날씨의 일기] 관리자 추가 인증 코드입니다.";
+		String content="인증코드 :"+randomCode;
+		mail.sendMail(dto, sub, content);
 		return randomCode;
 	}
 	
@@ -188,15 +178,18 @@ public class ApiController {
 	public String Tour_Api() throws Exception {
 		Map<String, Object> seoulInfo=seoul.historyTour();
 		List<Map<String, Object>> seoulInfoList= (List<Map<String, Object>>) seoulInfo.get("seoulInfo");
-		int index=0;
+		MainContentDto dto=new MainContentDto();
 		for(Map<String, Object> map: seoulInfoList) {
 			String No = map.get("No").toString();
 			String Title = map.get("Title").toString();
 			String Content = map.get("Content").toString();
 			
 			System.out.println(No);
+			dto.setMain_title(Title);
+			dto.setMain_content(Content);
+			dto.setWeather_no(1);
+			mainService.insert_history(dto);
 		}
-		System.out.println(index);
 		System.out.println();
 		return "redirect:/home.js";
 	}

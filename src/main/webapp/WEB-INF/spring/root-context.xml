@@ -27,6 +27,7 @@
 			<list>
 				<value>classpath:/config/user-mapper.xml</value>
 				<value>classpath:/config/board-mapper.xml</value>
+				<value>classpath:/config/main-mapper.xml</value>
 			</list>
 		</property>
 	</bean>

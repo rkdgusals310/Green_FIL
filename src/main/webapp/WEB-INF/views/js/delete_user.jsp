@@ -85,7 +85,7 @@ input[type="submit"]{
                     <div class="delete_check">
 	                    <div class="flex">
 	                        <input type="checkbox" id="delete_user1" name="delete_user">
-	                        <label for="delete_user1">탈퇴후 개인의 데이터를 복구할 수 없으며, FIL서비스에 남아있는 게시글을 삭제할 수 없습니다.</label>
+	                        <label for="delete_user1">탈퇴후 개인의 데이터를 복구할 수 없습니다.</label>
 	                    </div>
 	                    <div class="flex">
 	                        <input type="checkbox" id="delete_user2" name="delete_user">
