@@ -57,7 +57,12 @@
 			<ul class="navbar_menu" style="margin-bottom: -5px">
 				<li class="highlight"><a href="calendar.khm">오늘의 일기</a></li>
 				<li class="active">|</li>
+				<c:if test="${login.user_no eq null}">
+				<li class="highlight"><a href="login.js">고객 문의</a></li>
+				</c:if>
+				<c:if test="${login.user_no != null}">
 				<li class="highlight"><a href="home.hm?user_no=${login.user_no}">고객 문의</a></li>
+				</c:if>
 				<!-- <li class="active">|</li>
 				<li class="highlight"><a href="more_info.feel">FIL 알아보기</a></li> -->
 			</ul>
