@@ -184,8 +184,8 @@ public class UserController {
 
 	@GetMapping("admin_delete.js")
 	public String admin_delete(UserDto dto) {
-		System.out.println(dto.getGrade_no());
-		if(dto.getUser_no()!=1000) {
+		
+		if(dto.getUser_no()!=1000 || dto.getUser_no()!=dto.getUser_no()) {
 			service.admin_delete(dto);
 			return "redirect:/adminpage_list.js";
 		};

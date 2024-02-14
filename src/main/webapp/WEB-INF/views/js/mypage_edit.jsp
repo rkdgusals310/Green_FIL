@@ -176,7 +176,7 @@ input[type=radio] {
 
 		<br />
 
-		<div style="text-align:center; margin:10px; padding: 40px;">
+		<div style="text-align:center;  padding: 30px;">
 			<input type="submit" value="수정하기" id="editbtn">
 		</div>
 			</fieldset>
