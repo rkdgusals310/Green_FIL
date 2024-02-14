@@ -1,5 +1,4 @@
 package com.company.api;
-
 import java.util.Properties;
 import javax.mail.Authenticator;
 import javax.mail.Message;

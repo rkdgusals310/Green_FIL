@@ -82,7 +82,7 @@
 		join user u on u.user_no=b.user_no
 		where grade_no=3 and b.user_no=#{user_no}
 		<!-- #{user_no} -->
-		order by b.board_no desc 
+		order by b.status_no desc 
   </select>
   <select id="noticeList" resultType="BoardDto">	<!-- 공지사항 리스트 -->
   		select board_no,board_title,board_hit,board_date
