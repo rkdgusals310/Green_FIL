@@ -4,15 +4,7 @@
 
 
 <div class="container">
-  <h2>Feel In Like</h2>
-
-  <ul class="nav nav-tabs">
-    <li class="active tab_write"><a  href="home.html">홈</a></li>
-    <li class="tab_write"><a  href="home.html#menu1">공지사항</a></li>
-    <li class="tab_write"><a  href="home.html#menu2">내 문의내역</a></li>
-  </ul>
-
-  <div> <!-- 글작성 start -->
+  <div class="write_notice"> <!-- 글작성 start -->
     <form action="${pageContext.request.contextPath}/edit_macro.hm?macro_no=${macroDetail.macro_no}" method="post">
       <fieldset>
         <legend>매크로 답변을 수정해주세요</legend>

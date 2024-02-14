@@ -41,6 +41,10 @@
     top: 205px;
     left: 850px;
     }
+   #calendar {
+	width: 60%;
+	margin: 20px auto;
+	margin-top: 80px;
 </style>
 
 </head>
