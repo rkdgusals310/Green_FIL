@@ -12,13 +12,16 @@ import java.net.URLEncoder;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.springframework.stereotype.Component;
+
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 
+@Component
 public class Search_api {
 
-	public String NaverApi(String search) {
+	public Map<String, Object> NaverApi(String search) {
 		String clientId = "rNzGeKDyv6_oml2GeQla"; //애플리케이션 클라이언트 아이디
         String clientSecret = "zBHTb6rbhO"; //애플리케이션 클라이언트 시크릿
 
@@ -32,7 +35,8 @@ public class Search_api {
 
 
         //String apiURL = "https://openapi.naver.com/v1/search/blog?query=" + text;    // JSON 결과
-        String apiURL = "https://openapi.naver.com/v1/search/encyc.json?query=" + text+"&display=1";    // JSON 결과
+        String apiURL = "https://openapi.naver.com/v1/search/blog.json?query=" + text+"&display=1";    // JSON 결과
+       // String apiURL = "https://openapi.naver.com/v1/search/encyc.json?query=" + text+"&display=1";    // JSON 결과
         
         //String apiURL = "https://openapi.naver.com/v1/search/blog.xml?query="+ text; // XML 결과
 
@@ -46,9 +50,23 @@ public class Search_api {
         JsonParser parser=new JsonParser();
 		JsonObject job=(JsonObject) parser.parse(responseBody);
 		JsonArray arrays=job.getAsJsonArray("items");
+		System.out.println("arrays "+ arrays);
+		Map<String, Object> result= new HashMap<>();
+		if(arrays!=null && arrays.size()>0) {
+			
 		JsonObject array=arrays.get(0).getAsJsonObject();
-		array.get("title");
-		return responseBody;
+		String title = array.get("title").getAsString();
+		String link = array.get("link").getAsString();
+		String description = array.get("description").getAsString();
+		//String thumbnail = array.get("thumbnail").getAsString();
+		
+		result.put("title", title);
+		result.put("description", description);
+		result.put("link", link);
+		//result.put("thumbnail", thumbnail);
+		}
+		System.out.println("result "+ result);
+		return result;
 	}
 	 private static String get(String apiUrl, Map<String, String> requestHeaders){
 	        HttpURLConnection con = connect(apiUrl);

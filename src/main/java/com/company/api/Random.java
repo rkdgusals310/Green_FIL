@@ -1,5 +1,8 @@
 package com.company.api;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.springframework.stereotype.Component;
 
 @Component
@@ -24,5 +27,16 @@ public class Random {
 		System.out.println("@@@@"+code);
 		
 		return code;
+	}
+	
+	public List<String> random_api(List<String> list) {
+		List<String> randomList=new ArrayList<>();
+		for(int i=0; i<3; i++) {
+			int random=((int)(Math.random()*list.size()));
+			System.out.println(list.get(random)); 
+			randomList.add(list.get(random));
+		}
+		
+		return randomList;
 	}
 }

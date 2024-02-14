@@ -111,7 +111,7 @@ public class Test001 {
         System.out.println("안녕하세요");
 	}
 	
-	@Test //@Ignore
+	@Test @Ignore
 	public void test4() throws Exception {
 		 StringBuilder urlBuilder = new StringBuilder("http://apis.data.go.kr/1360000/VilageFcstInfoService_2.0/getVilageFcst"); /*URL*/
 	        urlBuilder.append("?" + URLEncoder.encode("serviceKey","UTF-8") + "=L8c%2FQH0GnJyQ3uTZP%2BkKzCti2jSs18XuTs%2BXyZU6WUbSJHw%2FZiHioSJXJsPDc385nUsVTwHi3bMnJsMw5X%2BxNA%3D%3D"); /*Service Key*/
@@ -159,12 +159,17 @@ public class Test001 {
 		dto.setWeather_no(1);
 		service.list_history(dto);
 	}
-	@Test //@Ignore
+	@Test @Ignore
 	public void test7() {
 		Search_api naver= new Search_api();
-		String search="숭례문";
-		String naverapi=naver.NaverApi(search);
-		System.out.println(naverapi);
+		String search="인왕산 기차바위";
+		System.out.println(naver.NaverApi(search));
+	}
+	
+	@Test
+	public void test8() {
+		Random random = new Random();
+		random.random_api(null);
 	}
 	
 }
