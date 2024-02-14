@@ -10,6 +10,7 @@ document.addEventListener('DOMContentLoaded', function() {
   var calendarEl = document.getElementById('calendar');
 
   var calendar = new FullCalendar.Calendar(calendarEl, {
+	  aspectRatio:1.75,
     googleCalendarApiKey:'AIzaSyAj7WwJTC5l1BuFpOXbnIeaqYSfF2KC_pI',
     eventSources: [
                {
@@ -59,5 +60,6 @@ document.addEventListener('DOMContentLoaded', function() {
 </head>
 <body>
 	<div id='calendar'></div>
+	<div><a class="btn">move</a></div>
 </body>
 </html>
