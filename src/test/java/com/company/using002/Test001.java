@@ -19,6 +19,7 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
+import com.company.api.Search_api;
 import com.company.api.Random;
 import com.company.dto.MainContentDto;
 import com.company.dto.UserDto;
@@ -157,6 +158,13 @@ public class Test001 {
 		MainContentDto dto=new MainContentDto();
 		dto.setWeather_no(1);
 		service.list_history(dto);
+	}
+	@Test //@Ignore
+	public void test7() {
+		Search_api naver= new Search_api();
+		String search="숭례문";
+		String naverapi=naver.NaverApi(search);
+		System.out.println(naverapi);
 	}
 	
 }
