@@ -176,7 +176,7 @@ public class ApiController {
 	
 	@GetMapping("historyTour.js")
 	public String Tour_Api() throws Exception {
-		Map<String, Object> seoulInfo=seoul.historyTour();
+		Map<String, Object> seoulInfo=seoul.historyTour();	
 		List<Map<String, Object>> seoulInfoList= (List<Map<String, Object>>) seoulInfo.get("seoulInfo");
 		MainContentDto dto=new MainContentDto();
 		for(Map<String, Object> map: seoulInfoList) {
