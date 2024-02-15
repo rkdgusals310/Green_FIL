@@ -23,7 +23,7 @@
 	<div id='calendar'></div>
 	<div style="position:relative; top: -380px; left: -180px;">
 		<p>
-			<a class="btn btn-default btn-sm" href="#"> <span
+			<a class="btn btn-default btn-sm" href="Search.js"> <span
 				class="glyphicon glyphicon-chevron-right"
 				style="font-size: 90px;"></span>
 			</a>
