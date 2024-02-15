@@ -1,8 +1,10 @@
 package com.company.controller;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -200,29 +202,58 @@ public class ApiController {
 		System.out.println();
 		return "redirect:/home.js";
 	}
+	@GetMapping("historyNearTour.js")
+	public String NearTour_Api() throws Exception {
+		Map<String, Object> seoulNearInfo = seoul.historyNearTour();
+		List<Map<String, Object>> seoulInfoList = (List<Map<String, Object>>) seoulNearInfo.get("seoulNearInfo");
+		MainContentDto dto = new MainContentDto();
+		for (Map<String, Object> map : seoulInfoList) {
+			//String No = map.get("No").toString();
+			String Title = map.get("Title").toString();
+			String Content = map.get("Content").toString();
+			
+			//System.out.println(No);
+			dto.setMain_title(Title);
+			dto.setMain_content(Content);
+			dto.setWeather_no(3);
+			mainService.insert_history(dto);
+		}
+		System.out.println();
+		return "redirect:/home.js";
+	}
+
 
 	@GetMapping("Search.js")
-	public String Search_Api() {
+	public String Search_Api(Model model) {
 		MainContentDto dto=new MainContentDto();
-		dto.setWeather_no(1);
+		dto.setWeather_no(4);
 		List<MainContentDto> main=mainService.list_history(dto);
 		List<String> list = new ArrayList<>(); 
-		for(int i=0; i<main.size(); i++) {
-			
-		String search=main.get(i).getMain_title();
-		//search=search.replaceAll("\\s", "");
-		System.err.println(search);
+		for(int i=0; i<main.size();i++) {
+			String search=main.get(i).getMain_title();
+			list.add(search);
+		}
+		
+		Random random = new Random();
+		Set<String> randomList= random.random_api(list);
+		list=new ArrayList<>();
+		Iterator<String> iter = randomList.iterator();
+		while(iter.hasNext()) {
+		String search=iter.next();
+		System.out.println("@@@@@@@Search"+search);
 		Map<String, Object> result=naver_search.NaverApi(search);
 		if(result!=null && result.size()>0) {
-			String link =  (String) result.get("link");
+			String link=(String) result.get("link");
 			list.add(link);
+			
 			}
 		}
-		Random random = new Random();
-		List<String> randomList= random.random_api(list);
-		System.out.println("random@@@"+randomList);
-		System.out.println(randomList.size());
-		return "redirect:/home.js";
+		System.err.println("random@@@ "+randomList);
+		System.err.println(randomList.size());
+		System.err.println("list@@@ "+list);
+		System.err.println("list@@@ "+list.size());
+		model.addAttribute("list", list);
+		return "content";
 	}
 
 }

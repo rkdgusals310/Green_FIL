@@ -35,8 +35,8 @@ public class Search_api {
 
 
         //String apiURL = "https://openapi.naver.com/v1/search/blog?query=" + text;    // JSON 결과
-        String apiURL = "https://openapi.naver.com/v1/search/blog.json?query=" + text+"&display=1";    // JSON 결과
-       // String apiURL = "https://openapi.naver.com/v1/search/encyc.json?query=" + text+"&display=1";    // JSON 결과
+       // String apiURL = "https://openapi.naver.com/v1/search/blog.json?query=" + text+"&display=1";    // JSON 결과
+       String apiURL = "https://openapi.naver.com/v1/search/encyc.json?query=" + text+"&display=1";    // JSON 결과
         
         //String apiURL = "https://openapi.naver.com/v1/search/blog.xml?query="+ text; // XML 결과
 
@@ -57,12 +57,12 @@ public class Search_api {
 		JsonObject array=arrays.get(0).getAsJsonObject();
 		String title = array.get("title").getAsString();
 		String link = array.get("link").getAsString();
-		String description = array.get("description").getAsString();
+		//String description = array.get("description").getAsString();
 		//String thumbnail = array.get("thumbnail").getAsString();
 		
 		result.put("title", title);
-		result.put("description", description);
 		result.put("link", link);
+		//result.put("description", description);
 		//result.put("thumbnail", thumbnail);
 		}
 		System.out.println("result "+ result);

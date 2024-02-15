@@ -1,7 +1,8 @@
 package com.company.api;
 
-import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import org.springframework.stereotype.Component;
 
@@ -29,12 +30,16 @@ public class Random {
 		return code;
 	}
 	
-	public List<String> random_api(List<String> list) {
-		List<String> randomList=new ArrayList<>();
-		for(int i=0; i<3; i++) {
+	public Set<String> random_api(List<String> list) {
+		Set<String> randomList=new HashSet<>();
+		for(;;) {
 			int random=((int)(Math.random()*list.size()));
 			System.out.println(list.get(random)); 
+			
 			randomList.add(list.get(random));
+			if(randomList.size()==5) {
+				break;
+			}
 		}
 		
 		return randomList;
