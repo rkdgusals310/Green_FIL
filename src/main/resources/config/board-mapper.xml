@@ -205,6 +205,4 @@
   		delete from macro where macro_no=#{macro_no} 
   </delete>
   
-
-  
 </mapper>

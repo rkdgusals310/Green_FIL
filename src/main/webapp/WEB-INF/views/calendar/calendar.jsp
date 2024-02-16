@@ -24,7 +24,7 @@
 	<c:if test="${login.user_no !=null }">
 	<div style="position:relative; top: -380px; left: -180px;">
 		<p>
-			<a class="btn btn-default btn-sm" href="Search.js"> <span
+			<a class="btn btn-default btn-sm" href="${pageContext.request.contextPath}/diary.khm"> <span
 				class="glyphicon glyphicon-chevron-right"
 				style="font-size: 90px;"></span>
 			</a>
