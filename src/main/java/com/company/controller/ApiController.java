@@ -226,7 +226,7 @@ public class ApiController {
 	@GetMapping("Search.js")
 	public String Search_Api(Model model) {
 		MainContentDto dto=new MainContentDto();
-		dto.setWeather_no(4);
+		dto.setWeather_no(1);
 		List<MainContentDto> main=mainService.list_history(dto);
 		List<String> list = new ArrayList<>(); 
 		for(int i=0; i<main.size();i++) {
