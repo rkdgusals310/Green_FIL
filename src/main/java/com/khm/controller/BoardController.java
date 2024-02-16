@@ -35,6 +35,7 @@ public class BoardController {
 	@Autowired EMail mail;
 	
 	
+	
 	@RequestMapping(value="/home.hm", method = RequestMethod.GET)
 	public String board_home(@RequestParam(value="pstartno",defaultValue = "0") int pstartno,Model model,BoardDto bdto) {
 		
@@ -338,21 +339,7 @@ public class BoardController {
 	}
 	
 	
-	@RequestMapping(value = "/write_diary.hm", method = RequestMethod.GET)
-	public void write_diary(Model model,MacroDto dto,HttpServletRequest request,HttpServletResponse response) throws IOException {
-		
-		request.setCharacterEncoding("UTF-8");
-		response.setContentType("text/html; charset=UTF-8");
-		
-		PrintWriter out=response.getWriter();
-
-		if(service.macroWrite(dto)>0) {
-			out.print("<script>alert('일기 쓰기 성공'); location.href='diary_list.hm';</script>");
-		}
-		else {
-			out.print("<script>alert('일기 쓰기 실패');history.go(-1);</script>");
-		}
-	}
+	
 	
 
 	
